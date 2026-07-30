@@ -174,8 +174,8 @@ const totalShares   = VIDEOS.reduce((s, v) => s + v.shares, 0);
 const avgLikeRate   = parseFloat((VIDEOS.reduce((s, v) => s + v.likeRate, 0) / VIDEOS.length).toFixed(2));
 const avgShareLike  = parseFloat((VIDEOS.reduce((s, v) => s + v.shareLikeRatio, 0) / VIDEOS.length).toFixed(2));
 
-// Actual views per video (for the trend chart)
-const VIEWS_TREND = VIDEOS.map((v) => ({
+// Actual views per video — chronological order (oldest V6 → newest V1)
+const VIEWS_TREND = VIDEOS.slice().reverse().map((v) => ({
   name:  `V${v.id}`,
   views: v.views,
   viewsM: parseFloat((v.views / 1e6).toFixed(2)),
@@ -338,8 +338,14 @@ function VideoTab({
           : "border-border bg-card/30 text-muted-foreground hover:border-primary/30 hover:text-foreground"
       }`}
     >
-      <div className="text-[10px] uppercase tracking-widest mb-1 opacity-60">
-        Video {video.id}
+      <div className="flex items-center justify-between mb-1">
+        <span className="text-[10px] uppercase tracking-widest opacity-60">Video {video.id}</span>
+        {video.id === 1 && (
+          <span className="text-[9px] font-bold uppercase tracking-wider px-1.5 py-0.5 rounded bg-primary/20 text-primary border border-primary/30">Newest</span>
+        )}
+        {video.id === VIDEOS.length && (
+          <span className="text-[9px] font-bold uppercase tracking-wider px-1.5 py-0.5 rounded bg-white/5 text-muted-foreground border border-border">Oldest</span>
+        )}
       </div>
       <div className="font-bold leading-tight line-clamp-2">{video.title}</div>
       <div className="mt-2 flex items-center gap-2">
@@ -466,11 +472,11 @@ export default function Home() {
               {/* Verdict badge */}
               <div className="flex flex-wrap items-center gap-3 mb-5">
                 <span className="text-[10px] font-mono text-muted-foreground uppercase tracking-widest">Page Growth Status</span>
-                <span className="flex items-center gap-1.5 px-3 py-1 rounded-full bg-yellow-500/10 border border-yellow-500/30 text-yellow-400 font-mono text-[10px] uppercase tracking-wider">
-                  <TrendingDown className="w-3 h-3" /> Views Normalizing
-                </span>
                 <span className="flex items-center gap-1.5 px-3 py-1 rounded-full bg-primary/10 border border-primary/30 text-primary font-mono text-[10px] uppercase tracking-wider">
-                  <TrendingUp className="w-3 h-3" /> Engagement Rising
+                  <TrendingUp className="w-3 h-3" /> Views Growing 3×
+                </span>
+                <span className="flex items-center gap-1.5 px-3 py-1 rounded-full bg-blue-500/10 border border-blue-500/30 text-blue-400 font-mono text-[10px] uppercase tracking-wider">
+                  <Award className="w-3 h-3" /> Audience Expanding
                 </span>
               </div>
 
@@ -651,7 +657,7 @@ export default function Home() {
                 className="lg:col-span-2 p-5 pt-6 rounded-xl border border-border bg-card relative overflow-hidden shadow-[0_0_40px_-15px_rgba(0,255,65,0.08)]"
               >
                 <p className="text-[10px] font-mono text-muted-foreground uppercase tracking-widest mb-4">
-                  Actual view count per video — V1 → V6
+                  Actual view count — oldest (V6) → newest (V1)
                 </p>
                 <ResponsiveContainer width="100%" height={240}>
                   <BarChart data={VIEWS_TREND} margin={{ top: 4, right: 16, left: -8, bottom: 4 }} barCategoryGap="30%">
@@ -691,33 +697,33 @@ export default function Home() {
 
                 <div className="space-y-3">
                   <div className="flex gap-2.5">
-                    <TrendingDown className="w-4 h-4 text-yellow-400 shrink-0 mt-0.5" />
+                    <TrendingUp className="w-4 h-4 text-primary shrink-0 mt-0.5" />
                     <div>
-                      <p className="text-xs font-mono text-white font-medium">Views are declining</p>
-                      <p className="text-[11px] text-muted-foreground mt-0.5 leading-relaxed">3.3M → 1.1M per video. First video gets max algorithm boost.</p>
+                      <p className="text-xs font-mono text-white font-medium">Views are growing 3×</p>
+                      <p className="text-[11px] text-muted-foreground mt-0.5 leading-relaxed">1.1M (oldest) → 3.3M (newest). Page ka reach 3 guna ho gaya hai.</p>
                     </div>
                   </div>
 
                   <div className="flex gap-2.5">
-                    <TrendingUp className="w-4 h-4 text-primary shrink-0 mt-0.5" />
+                    <Award className="w-4 h-4 text-blue-400 shrink-0 mt-0.5" />
                     <div>
-                      <p className="text-xs font-mono text-white font-medium">Like rate is rising</p>
-                      <p className="text-[11px] text-muted-foreground mt-0.5 leading-relaxed">1.34% → 1.80% — audience quality is getting better with each video.</p>
+                      <p className="text-xs font-mono text-white font-medium">Audience expanding fast</p>
+                      <p className="text-[11px] text-muted-foreground mt-0.5 leading-relaxed">Jitne naye log page par aa rahe hain, views badhte ja rahe hain — strong momentum.</p>
                     </div>
                   </div>
 
                   <div className="flex gap-2.5">
                     <Award className="w-4 h-4 text-primary shrink-0 mt-0.5" />
                     <div>
-                      <p className="text-xs font-mono text-white font-medium">Viral spread is stable</p>
-                      <p className="text-[11px] text-muted-foreground mt-0.5 leading-relaxed">Every video has Share:Like &gt; 5% — formula is proven and consistent.</p>
+                      <p className="text-xs font-mono text-white font-medium">Viral spread consistent</p>
+                      <p className="text-[11px] text-muted-foreground mt-0.5 leading-relaxed">Har video ka Share:Like &gt; 5% — formula start se hi kaam kar raha tha.</p>
                     </div>
                   </div>
                 </div>
 
                 <div className="mt-2 p-3 rounded-lg bg-primary/5 border border-primary/20">
                   <p className="text-[11px] font-mono text-primary/90 leading-relaxed">
-                    <span className="font-bold">Bottom line:</span> Page growth mein views thoda kam hue hain lekin engaged audience build ho raha hai — yahi sahi direction hai.
+                    <span className="font-bold">Bottom line:</span> Page strong growth par hai — purane videos se 3× zyada views aa rahe hain naye videos par. Formula kaam kar raha hai.
                   </p>
                 </div>
               </motion.div>
@@ -730,26 +736,26 @@ export default function Home() {
             <div className="grid grid-cols-1 md:grid-cols-3 gap-4">
               {[
                 {
-                  icon: <Award className="w-5 h-5" />,
-                  title: "Best Performing Content",
-                  stat: "Step-by-Step Guides",
-                  detail: `V4 "Laptop Setup" — 11.37% Share:Like (highest). Jab aap kisi ko kuch sikhate ho step-by-step, woh share karta hai.`,
+                  icon: <TrendingUp className="w-5 h-5" />,
+                  title: "Overall Page Growth",
+                  stat: "Views 3× in 6 videos",
+                  detail: `Oldest video (V6) ne 1.1M views liye the, newest (V1) ne 3.3M liye — page ka reach 3 guna ho gaya hai sirf 6 videos mein.`,
                   color: "text-primary",
                   border: "border-primary/30",
                 },
                 {
-                  icon: <TrendingUp className="w-5 h-5" />,
-                  title: "Fastest Growing Metric",
-                  stat: "Like Rate (+34%)",
-                  detail: `V1 se V6 tak like rate 1.34% se 1.80% ho gaya. Matlab audience zyada engaged ho rahi hai.`,
+                  icon: <Award className="w-5 h-5" />,
+                  title: "Best Viral Formula",
+                  stat: "Step-by-Step Guides",
+                  detail: `V4 "Laptop Setup" — 11.37% Share:Like (highest across all videos). Instructional content sabse zyada share hota hai.`,
                   color: "text-yellow-400",
                   border: "border-yellow-500/20",
                 },
                 {
                   icon: <ArrowRight className="w-5 h-5" />,
                   title: "Next Video Strategy",
-                  stat: "How-to + Role/Identity",
-                  detail: `V6 "Pro Hacker" ne sabse zyada like rate diya. Agle video mein "How to Become a ___" formula try karo.`,
+                  stat: "Keep the momentum",
+                  detail: `Newest video 3.3M views par hai. Agle video mein same format (dark aesthetic + tool/resource + short duration) rakho aur 4M target karo.`,
                   color: "text-blue-400",
                   border: "border-blue-500/20",
                 },

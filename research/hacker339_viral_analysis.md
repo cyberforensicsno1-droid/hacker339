@@ -4,16 +4,18 @@
 
 ---
 
-## 🗂️ VIDEOS TRACKER
+> ⚠️ **Video Order Note:** Dashboard mein V1 = NEWEST video, V6 = OLDEST video. Growth trend chronological order mein V6 → V1 hai (oldest → newest).
 
-| # | Title | Views | Likes | Shares | Comments | Duration | Link |
-|---|-------|-------|-------|--------|----------|----------|------|
-| 1 | 5 Chrome Extensions For Hackers! | 3.3M | 44.1K | 2.7K | 401 | 11.77s | [Link](https://www.facebook.com/share/r/1ByqdhCdHJ/) |
-| 2 | 7 Free Resources To Learn Hacking From Scratch | 1.9M | 28.6K | 1.5K | 273 | 10.57s | [Link](https://www.facebook.com/share/r/1K9mPUr8VM/) |
-| 3 | How To Turn Your Phone Into a Hacking Machine! | 1.5M | 22.3K | 1.9K | 137 | 11.67s | [Link](https://www.facebook.com/share/r/197d92Qr3Z/) |
-| 4 | How to Setup a Laptop For Hacking Step By Step Guide! | 1.3M | 17.9K | 2.0K | 95 | 12.27s | [Link](https://www.facebook.com/share/r/1Bd6JsyEmh/) |
-| 5 | Transform Android into Hacking Machine! | 1.2M | 20.6K | 1.6K | 191 | 11.37s | [Link](https://www.facebook.com/share/r/1KC2X8DhmH/) |
-| 6 | How to Become a Pro Hacker | 1.1M | 19.8K | 1.5K | 147 | 10.64s | [Link](https://www.facebook.com/share/r/1D4CySr4hg/) |
+## 🗂️ VIDEOS TRACKER (Newest → Oldest)
+
+| Dashboard # | Chrono Order | Title | Views | Likes | Shares | Comments | Duration | Link |
+|---|---|-------|-------|-------|--------|----------|----------|------|
+| V1 ⭐ NEWEST | 6th posted | 5 Chrome Extensions For Hackers! | 3.3M | 44.1K | 2.7K | 401 | 11.77s | [Link](https://www.facebook.com/share/r/1ByqdhCdHJ/) |
+| V2 | 5th posted | 7 Free Resources To Learn Hacking From Scratch | 1.9M | 28.6K | 1.5K | 273 | 10.57s | [Link](https://www.facebook.com/share/r/1K9mPUr8VM/) |
+| V3 | 4th posted | How To Turn Your Phone Into a Hacking Machine! | 1.5M | 22.3K | 1.9K | 137 | 11.67s | [Link](https://www.facebook.com/share/r/197d92Qr3Z/) |
+| V4 | 3rd posted | How to Setup a Laptop For Hacking Step By Step Guide! | 1.3M | 17.9K | 2.0K | 95 | 12.27s | [Link](https://www.facebook.com/share/r/1Bd6JsyEmh/) |
+| V5 | 2nd posted | Transform Android into Hacking Machine! | 1.2M | 20.6K | 1.6K | 191 | 11.37s | [Link](https://www.facebook.com/share/r/1KC2X8DhmH/) |
+| V6 📌 OLDEST | 1st posted | How to Become a Pro Hacker | 1.1M | 19.8K | 1.5K | 147 | 10.64s | [Link](https://www.facebook.com/share/r/1D4CySr4hg/) |
 
 ---
 
