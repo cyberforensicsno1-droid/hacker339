@@ -328,6 +328,13 @@ const TAKEAWAYS = [
   "Consistent 9:16 vertical format across all videos confirms Reels-first strategy is working",
 ];
 
+// ─── View formatter — shows exact K for sub-1M, M for 1M+ ───────────────────
+function fmtViews(v: number): string {
+  if (v >= 1_000_000) return `${(v / 1_000_000).toFixed(1)}M`;
+  if (v >= 1_000)     return `${(v / 1_000).toFixed(1)}K`;
+  return String(v);
+}
+
 // ─── Page-level aggregates ───────────────────────────────────────────────────
 
 const totalViews    = VIDEOS.reduce((s, v) => s + v.views, 0);
@@ -515,7 +522,7 @@ function VideoTab({
       <div className="mt-2 flex items-center gap-2">
         <Eye className="w-3 h-3" />
         <span className="text-xs">
-          {(video.views / 1_000_000).toFixed(1)}M views
+          {fmtViews(video.views)} views
         </span>
       </div>
     </button>
@@ -560,7 +567,7 @@ function LineTooltip({ active, payload, label }: { active?: boolean; payload?: {
   if (!active || !payload?.length) return null;
   const raw = payload[0].payload;
   const actuals: Record<string, string> = {
-    Views:     `${(raw._views / 1e6).toFixed(2)}M`,
+    Views:     fmtViews(raw._views),
     Likes:     `${(raw._likes / 1e3).toFixed(1)}K`,
     Shares:    `${(raw._shares / 1e3).toFixed(1)}K`,
     Comments:  String(raw._comments),
