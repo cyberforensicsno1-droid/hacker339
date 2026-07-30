@@ -161,16 +161,34 @@ const VIDEOS = [
     shareLikeRatio: 13.61,
     commentRate: 0.025,
   },
+  {
+    id: 8,
+    title: "Cybersecurity Guidelines in 4 minutes",
+    caption: "Cybersecurity Guidelines in 4 minutes #CyberSecurity",
+    link: "https://www.facebook.com/share/v/1CuB3v3cen/",
+    views: 1200000,
+    likes: 28888,
+    shares: 4878,
+    comments: 220,
+    duration: "220s",
+    format: "720×1280 (9:16)",
+    fps: "30 FPS",
+    music: "—",
+    likeRate: 2.41,
+    shareRate: 0.41,
+    shareLikeRatio: 16.88,
+    commentRate: 0.018,
+  },
 ];
 
 const PATTERNS = [
-  { label: "Duration", v1: "11.77s", v2: "10.57s", v3: "11.67s", v4: "12.27s", v5: "11.37s", v6: "10.64s", v7: "172s ↑", note: "V7 long-form outlier" },
-  { label: "Format", v1: "9:16", v2: "9:16", v3: "9:16", v4: "9:16", v5: "9:16", v6: "9:16", v7: "9:16", note: "Always Reels format" },
-  { label: "Music Style", v1: "Dark Slowed", v2: "Dark Slowed", v3: "Game Over", v4: "Dark Slowed", v5: "Walk Instr.", v6: "Dark Slowed", v7: "—", note: "Consistent dark energy" },
-  { label: "Hashtag", v1: "#infosec", v2: "#infosec", v3: "#infosec", v4: "#infosec", v5: "#infosec", v6: "#CyberSec", v7: "#infosec", note: "Cyber niche targeting" },
-  { label: "Visual Theme", v1: "Black+Green", v2: "Black+Green", v3: "Black+Purple", v4: "Black+Red", v5: "Black+Green", v6: "Black+Green", v7: "Black+Red", note: "Dark brand consistent" },
-  { label: "Title Format", v1: "Number+Tool", v2: "Number+Res.", v3: "Action+Phone", v4: "How-to+Laptop", v5: "Action+Android", v6: "How-to+Role", v7: "Bait+Trap ↑", note: "Curiosity/bait hook" },
-  { label: "Share:Like %", v1: "6.1%", v2: "5.24%", v3: "8.7%", v4: "11.37%", v5: "7.74%", v6: "7.58%", v7: "13.61% ↑", note: "V7 highest viral spread" },
+  { label: "Duration", v1: "11.77s", v2: "10.57s", v3: "11.67s", v4: "12.27s", v5: "11.37s", v6: "10.64s", v7: "172s", v8: "220s ↑", note: "V7+V8 long-form outliers" },
+  { label: "Format", v1: "9:16", v2: "9:16", v3: "9:16", v4: "9:16", v5: "9:16", v6: "9:16", v7: "9:16", v8: "9:16", note: "Always Reels format" },
+  { label: "Music Style", v1: "Dark Slowed", v2: "Dark Slowed", v3: "Game Over", v4: "Dark Slowed", v5: "Walk Instr.", v6: "Dark Slowed", v7: "—", v8: "—", note: "Consistent dark energy" },
+  { label: "Hashtag", v1: "#infosec", v2: "#infosec", v3: "#infosec", v4: "#infosec", v5: "#infosec", v6: "#CyberSec", v7: "#infosec", v8: "#CyberSec", note: "Cyber niche targeting" },
+  { label: "Visual Theme", v1: "Black+Green", v2: "Black+Green", v3: "Black+Purple", v4: "Black+Red", v5: "Black+Green", v6: "Black+Green", v7: "Black+Red", v8: "Black+White", note: "Dark brand consistent" },
+  { label: "Title Format", v1: "Number+Tool", v2: "Number+Res.", v3: "Action+Phone", v4: "How-to+Laptop", v5: "Action+Android", v6: "How-to+Role", v7: "Bait+Trap", v8: "Guide+Time ↑", note: "Time-bound hooks work" },
+  { label: "Share:Like %", v1: "6.1%", v2: "5.24%", v3: "8.7%", v4: "11.37%", v5: "7.74%", v6: "7.58%", v7: "13.61%", v8: "16.88% ↑", note: "V8 record — viral peak" },
 ];
 
 const TAKEAWAYS = [
@@ -340,10 +358,12 @@ function SectionHeading({ prefix, title }: { prefix: string; title: string }) {
 
 function VideoTab({
   video,
+  rank,
   active,
   onClick,
 }: {
   video: (typeof VIDEOS)[0];
+  rank: number;
   active: boolean;
   onClick: () => void;
 }) {
@@ -358,11 +378,11 @@ function VideoTab({
     >
       <div className="flex items-center justify-between mb-1">
         <span className="text-[10px] uppercase tracking-widest opacity-60">Video {video.id}</span>
-        {video.id === 1 && (
-          <span className="text-[9px] font-bold uppercase tracking-wider px-1.5 py-0.5 rounded bg-primary/20 text-primary border border-primary/30">Newest</span>
+        {rank === 1 && (
+          <span className="text-[9px] font-bold uppercase tracking-wider px-1.5 py-0.5 rounded bg-primary/20 text-primary border border-primary/30">Top</span>
         )}
-        {video.id === VIDEOS.length && (
-          <span className="text-[9px] font-bold uppercase tracking-wider px-1.5 py-0.5 rounded bg-white/5 text-muted-foreground border border-border">Oldest</span>
+        {rank === VIDEOS.length && (
+          <span className="text-[9px] font-bold uppercase tracking-wider px-1.5 py-0.5 rounded bg-white/5 text-muted-foreground border border-border">Lowest</span>
         )}
       </div>
       <div className="font-bold leading-tight line-clamp-2">{video.title}</div>
@@ -438,8 +458,8 @@ function LineTooltip({ active, payload, label }: { active?: boolean; payload?: {
 }
 
 export default function Home() {
-  const [active, setActive] = useState(0);
-  const v = VIDEOS[active];
+  const [activeId, setActiveId] = useState(VIDEOS[0].id);
+  const v = VIDEOS.find((vid) => vid.id === activeId)!;
 
   return (
     <div className="min-h-screen bg-background text-foreground selection:bg-primary/30 selection:text-primary">
@@ -523,12 +543,13 @@ export default function Home() {
               Select Video
             </p>
             <div className="grid grid-cols-2 sm:grid-cols-3 lg:grid-cols-5 gap-3">
-              {VIDEOS.map((vid, i) => (
+              {[...VIDEOS].sort((a, b) => b.views - a.views).map((vid, i) => (
                 <VideoTab
                   key={vid.id}
                   video={vid}
-                  active={active === i}
-                  onClick={() => setActive(i)}
+                  rank={i + 1}
+                  active={activeId === vid.id}
+                  onClick={() => setActiveId(vid.id)}
                 />
               ))}
             </div>
@@ -675,7 +696,7 @@ export default function Home() {
                 className="lg:col-span-2 p-5 pt-6 rounded-xl border border-border bg-card relative overflow-hidden shadow-[0_0_40px_-15px_rgba(0,255,65,0.08)]"
               >
                 <p className="text-[10px] font-mono text-muted-foreground uppercase tracking-widest mb-4">
-                  Actual view count — oldest (V6) → newest (V1)
+                  Actual view count — by video ID (V1–V8)
                 </p>
                 <ResponsiveContainer width="100%" height={240}>
                   <BarChart data={VIEWS_TREND} margin={{ top: 4, right: 16, left: -8, bottom: 4 }} barCategoryGap="30%">
@@ -864,7 +885,7 @@ export default function Home() {
               <div className="absolute top-0 left-0 w-1 h-full bg-primary" />
 
               {/* Header row */}
-              <div className="grid grid-cols-[1fr_1fr_1fr_1fr_1fr_1fr_1fr_1fr] border-b border-border/60 bg-black/30 min-w-[880px]">
+              <div className="grid grid-cols-[1fr_1fr_1fr_1fr_1fr_1fr_1fr_1fr_1fr] border-b border-border/60 bg-black/30 min-w-[1000px]">
                 <div className="py-3 px-3 font-mono text-[10px] text-muted-foreground uppercase tracking-widest border-r border-border/40">
                   Metric
                 </div>
@@ -886,23 +907,26 @@ export default function Home() {
                 <div className="py-3 px-3 font-mono text-[10px] text-primary/20 uppercase tracking-widest border-r border-border/40 flex items-center gap-1">
                   <span className="w-1.5 h-1.5 rounded-full bg-primary/10 shrink-0" /> V6
                 </div>
-                <div className="py-3 px-3 font-mono text-[10px] text-primary/60 uppercase tracking-widest flex items-center gap-1">
+                <div className="py-3 px-3 font-mono text-[10px] text-primary/60 uppercase tracking-widest border-r border-border/40 flex items-center gap-1">
                   <span className="w-1.5 h-1.5 rounded-full bg-primary/40 shrink-0" /> V7
+                </div>
+                <div className="py-3 px-3 font-mono text-[10px] text-primary/80 uppercase tracking-widest flex items-center gap-1">
+                  <span className="w-1.5 h-1.5 rounded-full bg-primary/60 shrink-0" /> V8
                 </div>
               </div>
 
               {[
-                ["Views",     "3.3M",   "1.9M",   "1.5M",   "1.3M",   "1.2M",   "1.1M",   "2.0M ↑"],
-                ["Likes",     "44.1K",  "28.6K",  "22.3K",  "17.9K",  "20.6K",  "19.8K",  "43.2K ↑"],
-                ["Shares",    "2.7K",   "1.5K",   "1.9K",   "2.0K",   "1.6K",   "1.5K",   "5.9K ↑"],
-                ["Comments",  "401",    "273",    "137",    "95",     "191",    "147",    "500 ↑"],
-                ["Duration",  "11.77s", "10.57s", "11.67s", "12.27s", "11.37s", "10.64s", "172s ↑"],
-                ["Like Rate", "1.34%",  "1.51%",  "1.49%",  "1.37%",  "1.72%",  "1.80%",  "2.16% ↑"],
-                ["Share:Like","6.1%",   "5.24%",  "8.7%",   "11.37%", "7.74%",  "7.58%",  "13.61% ↑"],
-              ].map(([metric, v1, v2, v3, v4, v5, v6, v7], i) => (
+                ["Views",     "3.3M",   "1.9M",   "1.5M",   "1.3M",   "1.2M",   "1.1M",   "2.0M",   "1.2M"],
+                ["Likes",     "44.1K",  "28.6K",  "22.3K",  "17.9K",  "20.6K",  "19.8K",  "43.2K",  "28.9K"],
+                ["Shares",    "2.7K",   "1.5K",   "1.9K",   "2.0K",   "1.6K",   "1.5K",   "5.9K",   "4.9K"],
+                ["Comments",  "401",    "273",    "137",    "95",     "191",    "147",    "500",    "220"],
+                ["Duration",  "11.77s", "10.57s", "11.67s", "12.27s", "11.37s", "10.64s", "172s",   "220s ↑"],
+                ["Like Rate", "1.34%",  "1.51%",  "1.49%",  "1.37%",  "1.72%",  "1.80%",  "2.16%",  "2.41% ↑"],
+                ["Share:Like","6.1%",   "5.24%",  "8.7%",   "11.37%", "7.74%",  "7.58%",  "13.61%", "16.88% ↑"],
+              ].map(([metric, v1, v2, v3, v4, v5, v6, v7, v8], i) => (
                 <div
                   key={metric}
-                  className={`grid grid-cols-[1fr_1fr_1fr_1fr_1fr_1fr_1fr_1fr] border-b border-border/30 last:border-0 hover:bg-white/[0.02] transition-colors min-w-[880px] ${i % 2 === 0 ? "" : "bg-white/[0.01]"}`}
+                  className={`grid grid-cols-[1fr_1fr_1fr_1fr_1fr_1fr_1fr_1fr_1fr] border-b border-border/30 last:border-0 hover:bg-white/[0.02] transition-colors min-w-[1000px] ${i % 2 === 0 ? "" : "bg-white/[0.01]"}`}
                 >
                   <div className="py-3 px-3 font-mono text-xs text-muted-foreground border-r border-border/30">
                     {metric}
@@ -925,8 +949,11 @@ export default function Home() {
                   <div className={`py-3 px-3 font-mono text-sm font-medium border-r border-border/30 ${v6!.includes("↑") ? "text-primary" : "text-white/80"}`}>
                     {v6}
                   </div>
-                  <div className={`py-3 px-3 font-mono text-sm font-medium ${v7!.includes("↑") ? "text-primary" : "text-white/80"}`}>
+                  <div className={`py-3 px-3 font-mono text-sm font-medium border-r border-border/30 ${v7!.includes("↑") ? "text-primary" : "text-white/80"}`}>
                     {v7}
+                  </div>
+                  <div className={`py-3 px-3 font-mono text-sm font-medium ${v8!.includes("↑") ? "text-primary" : "text-white/80"}`}>
+                    {v8}
                   </div>
                 </div>
               ))}
@@ -944,7 +971,7 @@ export default function Home() {
                   whileInView={{ opacity: 1, x: 0 }}
                   viewport={{ once: true }}
                   transition={{ delay: i * 0.05 }}
-                  className="grid grid-cols-[110px_1fr_1fr_1fr_1fr_1fr_1fr_1fr_auto] items-center gap-2 p-3 rounded-lg border border-border/40 bg-card/40 hover:border-primary/30 hover:bg-card/60 transition-all group text-sm font-mono min-w-[960px]"
+                  className="grid grid-cols-[110px_1fr_1fr_1fr_1fr_1fr_1fr_1fr_1fr_auto] items-center gap-2 p-3 rounded-lg border border-border/40 bg-card/40 hover:border-primary/30 hover:bg-card/60 transition-all group text-sm font-mono min-w-[1060px]"
                 >
                   <span className="text-muted-foreground text-xs uppercase tracking-wide">{p.label}</span>
                   <span className="text-white/80 text-xs truncate">{p.v1}</span>
@@ -954,6 +981,7 @@ export default function Home() {
                   <span className={`text-xs truncate ${p.v5.includes("↑") ? "text-primary font-bold" : "text-white/80"}`}>{p.v5}</span>
                   <span className={`text-xs truncate ${p.v6.includes("↑") ? "text-primary font-bold" : "text-white/80"}`}>{p.v6}</span>
                   <span className={`text-xs truncate ${p.v7.includes("↑") ? "text-primary font-bold" : "text-white/80"}`}>{p.v7}</span>
+                  <span className={`text-xs truncate ${p.v8.includes("↑") ? "text-primary font-bold" : "text-white/80"}`}>{p.v8}</span>
                   <span className="flex items-center gap-1.5 text-primary text-[10px] bg-primary/10 border border-primary/20 px-2 py-0.5 rounded-full whitespace-nowrap group-hover:bg-primary/20 transition-colors">
                     <Zap className="w-2.5 h-2.5" /> {p.note}
                   </span>
