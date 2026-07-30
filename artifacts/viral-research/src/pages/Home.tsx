@@ -75,16 +75,34 @@ const VIDEOS = [
     shareLikeRatio: 8.7,
     commentRate: 0.009,
   },
+  {
+    id: 4,
+    title: "How to Setup a Laptop For Hacking Step By Step Guide!",
+    caption: "Laptop Setup Guide for Hackers #infosec",
+    link: "https://www.facebook.com/share/r/1Bd6JsyEmh/",
+    views: 1300000,
+    likes: 17860,
+    shares: 2031,
+    comments: 95,
+    duration: "12.27s",
+    format: "720×1280 (9:16)",
+    fps: "30 FPS",
+    music: "Tony Dark Eyes · Dark (Slowed)",
+    likeRate: 1.37,
+    shareRate: 0.156,
+    shareLikeRatio: 11.37,
+    commentRate: 0.007,
+  },
 ];
 
 const PATTERNS = [
-  { label: "Duration", v1: "11.77s", v2: "10.57s", v3: "11.67s", note: "Always under 12 seconds" },
-  { label: "Format", v1: "9:16 Vertical", v2: "9:16 Vertical", v3: "9:16 Vertical", note: "Always Reels format" },
-  { label: "Music Style", v1: "Slowed + Dark", v2: "Slowed + Dark", v3: "Game Over Beat", note: "Consistent dark energy" },
-  { label: "Hashtag", v1: "#infosec", v2: "#infosec", v3: "#infosec", note: "Same niche hashtag" },
-  { label: "Visual Theme", v1: "Black + Green", v2: "Black + Green", v3: "Black + Purple", note: "Dark brand consistent" },
-  { label: "Title Format", v1: "Number + Tool", v2: "Number + Resource", v3: "Action + Device", note: "Curiosity-driven hook" },
-  { label: "Share:Like Ratio", v1: "6.1%", v2: "5.24%", v3: "8.7% ↑", note: "All well above 5%" },
+  { label: "Duration", v1: "11.77s", v2: "10.57s", v3: "11.67s", v4: "12.27s", note: "All ~12 seconds" },
+  { label: "Format", v1: "9:16 Vertical", v2: "9:16 Vertical", v3: "9:16 Vertical", v4: "9:16 Vertical", note: "Always Reels format" },
+  { label: "Music Style", v1: "Slowed + Dark", v2: "Slowed + Dark", v3: "Game Over Beat", v4: "Slowed + Dark", note: "Consistent dark energy" },
+  { label: "Hashtag", v1: "#infosec", v2: "#infosec", v3: "#infosec", v4: "#infosec", note: "Same niche hashtag" },
+  { label: "Visual Theme", v1: "Black + Green", v2: "Black + Green", v3: "Black + Purple", v4: "Black + Red", note: "Dark brand consistent" },
+  { label: "Title Format", v1: "Number + Tool", v2: "Number + Resource", v3: "Action + Device", v4: "How-to + Device", note: "Curiosity hook always" },
+  { label: "Share:Like Ratio", v1: "6.1%", v2: "5.24%", v3: "8.7%", v4: "11.37% ↑", note: "V4 highest — step guides spread" },
 ];
 
 const TAKEAWAYS = [
@@ -466,45 +484,51 @@ export default function Home() {
               <div className="absolute top-0 left-0 w-1 h-full bg-primary" />
 
               {/* Header row */}
-              <div className="grid grid-cols-[1fr_1fr_1fr_1fr] border-b border-border/60 bg-black/30">
-                <div className="py-3 px-5 font-mono text-[10px] text-muted-foreground uppercase tracking-widest border-r border-border/40">
+              <div className="grid grid-cols-[1fr_1fr_1fr_1fr_1fr] border-b border-border/60 bg-black/30">
+                <div className="py-3 px-4 font-mono text-[10px] text-muted-foreground uppercase tracking-widest border-r border-border/40">
                   Metric
                 </div>
-                <div className="py-3 px-5 font-mono text-[10px] text-primary uppercase tracking-widest border-r border-border/40 flex items-center gap-1.5">
-                  <span className="w-1.5 h-1.5 rounded-full bg-primary" /> Video 1
+                <div className="py-3 px-4 font-mono text-[10px] text-primary uppercase tracking-widest border-r border-border/40 flex items-center gap-1.5">
+                  <span className="w-1.5 h-1.5 rounded-full bg-primary" /> V1
                 </div>
-                <div className="py-3 px-5 font-mono text-[10px] text-primary/70 uppercase tracking-widest border-r border-border/40 flex items-center gap-1.5">
-                  <span className="w-1.5 h-1.5 rounded-full bg-primary/50" /> Video 2
+                <div className="py-3 px-4 font-mono text-[10px] text-primary/70 uppercase tracking-widest border-r border-border/40 flex items-center gap-1.5">
+                  <span className="w-1.5 h-1.5 rounded-full bg-primary/50" /> V2
                 </div>
-                <div className="py-3 px-5 font-mono text-[10px] text-primary/50 uppercase tracking-widest flex items-center gap-1.5">
-                  <span className="w-1.5 h-1.5 rounded-full bg-primary/30" /> Video 3
+                <div className="py-3 px-4 font-mono text-[10px] text-primary/50 uppercase tracking-widest border-r border-border/40 flex items-center gap-1.5">
+                  <span className="w-1.5 h-1.5 rounded-full bg-primary/30" /> V3
+                </div>
+                <div className="py-3 px-4 font-mono text-[10px] text-primary/40 uppercase tracking-widest flex items-center gap-1.5">
+                  <span className="w-1.5 h-1.5 rounded-full bg-primary/20" /> V4
                 </div>
               </div>
 
               {[
-                ["Views",     "3.3M",   "1.9M",   "1.5M"],
-                ["Likes",     "44.1K",  "28.6K",  "22.3K"],
-                ["Shares",    "2.7K",   "1.5K",   "1.9K"],
-                ["Comments",  "401",    "273",    "137"],
-                ["Duration",  "11.77s", "10.57s", "11.67s"],
-                ["Like Rate", "1.34%",  "1.51%",  "1.49%"],
-                ["Share:Like","6.1%",   "5.24%",  "8.7% ↑"],
-              ].map(([metric, v1, v2, v3], i) => (
+                ["Views",     "3.3M",   "1.9M",   "1.5M",   "1.3M"],
+                ["Likes",     "44.1K",  "28.6K",  "22.3K",  "17.9K"],
+                ["Shares",    "2.7K",   "1.5K",   "1.9K",   "2.0K"],
+                ["Comments",  "401",    "273",    "137",    "95"],
+                ["Duration",  "11.77s", "10.57s", "11.67s", "12.27s"],
+                ["Like Rate", "1.34%",  "1.51%",  "1.49%",  "1.37%"],
+                ["Share:Like","6.1%",   "5.24%",  "8.7%",   "11.37% ↑"],
+              ].map(([metric, v1, v2, v3, v4], i) => (
                 <div
                   key={metric}
-                  className={`grid grid-cols-[1fr_1fr_1fr_1fr] border-b border-border/30 last:border-0 hover:bg-white/[0.02] transition-colors ${i % 2 === 0 ? "" : "bg-white/[0.01]"}`}
+                  className={`grid grid-cols-[1fr_1fr_1fr_1fr_1fr] border-b border-border/30 last:border-0 hover:bg-white/[0.02] transition-colors ${i % 2 === 0 ? "" : "bg-white/[0.01]"}`}
                 >
-                  <div className="py-3.5 px-5 font-mono text-xs text-muted-foreground border-r border-border/30">
+                  <div className="py-3 px-4 font-mono text-xs text-muted-foreground border-r border-border/30">
                     {metric}
                   </div>
-                  <div className="py-3.5 px-5 font-mono text-sm text-white font-medium border-r border-border/30">
+                  <div className="py-3 px-4 font-mono text-sm text-white font-medium border-r border-border/30">
                     {v1}
                   </div>
-                  <div className={`py-3.5 px-5 font-mono text-sm font-medium border-r border-border/30 ${v2.includes("↑") ? "text-primary" : "text-white/80"}`}>
+                  <div className={`py-3 px-4 font-mono text-sm font-medium border-r border-border/30 ${v2.includes("↑") ? "text-primary" : "text-white/80"}`}>
                     {v2}
                   </div>
-                  <div className={`py-3.5 px-5 font-mono text-sm font-medium ${v3.includes("↑") ? "text-primary" : "text-white/80"}`}>
+                  <div className={`py-3 px-4 font-mono text-sm font-medium border-r border-border/30 ${v3.includes("↑") ? "text-primary" : "text-white/80"}`}>
                     {v3}
+                  </div>
+                  <div className={`py-3 px-4 font-mono text-sm font-medium ${v4.includes("↑") ? "text-primary" : "text-white/80"}`}>
+                    {v4}
                   </div>
                 </div>
               ))}
@@ -522,12 +546,13 @@ export default function Home() {
                   whileInView={{ opacity: 1, x: 0 }}
                   viewport={{ once: true }}
                   transition={{ delay: i * 0.05 }}
-                  className="grid grid-cols-[140px_1fr_1fr_1fr_auto] items-center gap-3 p-3.5 rounded-lg border border-border/40 bg-card/40 hover:border-primary/30 hover:bg-card/60 transition-all group text-sm font-mono"
+                  className="grid grid-cols-[120px_1fr_1fr_1fr_1fr_auto] items-center gap-2 p-3.5 rounded-lg border border-border/40 bg-card/40 hover:border-primary/30 hover:bg-card/60 transition-all group text-sm font-mono"
                 >
                   <span className="text-muted-foreground text-xs uppercase tracking-wide">{p.label}</span>
                   <span className="text-white/80 text-xs truncate">{p.v1}</span>
                   <span className="text-white/80 text-xs truncate">{p.v2}</span>
                   <span className={`text-xs truncate ${p.v3.includes("↑") ? "text-primary font-bold" : "text-white/80"}`}>{p.v3}</span>
+                  <span className={`text-xs truncate ${p.v4.includes("↑") ? "text-primary font-bold" : "text-white/80"}`}>{p.v4}</span>
                   <span className="flex items-center gap-1.5 text-primary text-[10px] bg-primary/10 border border-primary/20 px-2 py-0.5 rounded-full whitespace-nowrap group-hover:bg-primary/20 transition-colors">
                     <Zap className="w-2.5 h-2.5" /> {p.note}
                   </span>
@@ -634,6 +659,7 @@ export default function Home() {
                   { done: true, text: "Video #1 analyzed — 5 Chrome Extensions For Hackers (3.3M)" },
                   { done: true, text: "Video #2 analyzed — 7 Free Resources To Learn Hacking (1.9M)" },
                   { done: true, text: "Video #3 analyzed — How To Turn Your Phone Into a Hacking Machine (1.5M)" },
+                  { done: true, text: "Video #4 analyzed — How to Setup a Laptop For Hacking Step By Step Guide (1.3M)" },
                   { done: false, text: "Posting frequency pattern — pending" },
                   { done: false, text: "Full page niche audit — pending" },
                 ].map((item, i) => (
