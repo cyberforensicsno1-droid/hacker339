@@ -14,7 +14,9 @@ import {
   CheckSquare,
   GitCompare,
   ChevronRight,
+  BarChart2,
 } from "lucide-react";
+import { Link } from "wouter";
 
 // ─── Data ────────────────────────────────────────────────────────────────────
 
@@ -270,11 +272,17 @@ export default function Home() {
                 Hacker339 · {VIDEOS.length} Videos Analyzed
               </p>
             </div>
-            <div className="flex items-center gap-2 px-3 py-1.5 rounded-full border border-primary/30 bg-primary/5">
-              <div className="h-2 w-2 rounded-full bg-primary animate-pulse shadow-[0_0_8px_rgba(0,255,65,0.8)]" />
-              <span className="text-[10px] font-mono text-primary tracking-widest uppercase hidden sm:inline-block">
-                Live Data
-              </span>
+            <div className="flex items-center gap-3">
+              <Link href="/analytics"
+                className="flex items-center gap-1.5 text-[10px] font-mono text-muted-foreground hover:text-primary transition-colors uppercase tracking-widest border border-border hover:border-primary/40 px-3 py-1.5 rounded">
+                <BarChart2 className="w-3 h-3" /> Analytics
+              </Link>
+              <div className="flex items-center gap-2 px-3 py-1.5 rounded-full border border-primary/30 bg-primary/5">
+                <div className="h-2 w-2 rounded-full bg-primary animate-pulse shadow-[0_0_8px_rgba(0,255,65,0.8)]" />
+                <span className="text-[10px] font-mono text-primary tracking-widest uppercase hidden sm:inline-block">
+                  Live Data
+                </span>
+              </div>
             </div>
           </div>
         </header>

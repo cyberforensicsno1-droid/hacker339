@@ -3,6 +3,7 @@ import { Toaster } from '@/components/ui/toaster';
 import { TooltipProvider } from '@/components/ui/tooltip';
 import { Route, Switch, Router as WouterRouter } from 'wouter';
 import Home from './pages/Home';
+import Analytics from './pages/Analytics';
 
 const queryClient = new QueryClient();
 
@@ -10,6 +11,7 @@ function Router() {
   return (
     <Switch>
       <Route path="/" component={Home} />
+      <Route path="/analytics" component={Analytics} />
       <Route component={() => (
         <div className="min-h-screen bg-black flex items-center justify-center p-8">
           <div className="text-center">
