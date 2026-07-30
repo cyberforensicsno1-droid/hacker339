@@ -215,6 +215,24 @@ const VIDEOS = [
     shareLikeRatio: 16.56,
     commentRate: 0.014,
   },
+  {
+    id: 11,
+    title: "Social media OSINT in 8 minutes",
+    caption: "Social media OSINT in 8 minutes — SOCMINT",
+    link: "",
+    views: 995101,
+    likes: 18850,
+    shares: 3869,
+    comments: 139,
+    duration: "~8 min",
+    format: "720×1280 (9:16)",
+    fps: "30 FPS",
+    music: "—",
+    likeRate: 1.89,
+    shareRate: 0.389,
+    shareLikeRatio: 20.53,
+    commentRate: 0.014,
+  },
 ];
 
 const PATTERNS = [
