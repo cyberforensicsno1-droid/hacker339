@@ -10,17 +10,48 @@
 
 | Dashboard # | Chrono Order | Title | Views | Likes | Shares | Comments | Duration | Link |
 |---|---|-------|-------|-------|--------|----------|----------|------|
-| V1 ⭐ NEWEST | 7th posted | How to show all WiFi Password (Windows) | 1.1M | 12,712 | 2,105 | 156 | — | [Link](https://www.facebook.com/share/v/19M8u5AkL5/) |
-| V2 | 6th posted | 5 Chrome Extensions For Hackers! | 3.3M | 44.1K | 2.7K | 401 | 11.77s | [Link](https://www.facebook.com/share/r/1ByqdhCdHJ/) |
-| V3 | 5th posted | 7 Free Resources To Learn Hacking From Scratch | 1.9M | 28.6K | 1.5K | 273 | 10.57s | [Link](https://www.facebook.com/share/r/1K9mPUr8VM/) |
-| V4 | 4th posted | How To Turn Your Phone Into a Hacking Machine! | 1.5M | 22.3K | 1.9K | 137 | 11.67s | [Link](https://www.facebook.com/share/r/197d92Qr3Z/) |
-| V5 | 3rd posted | How to Setup a Laptop For Hacking Step By Step Guide! | 1.3M | 17.9K | 2.0K | 95 | 12.27s | [Link](https://www.facebook.com/share/r/1Bd6JsyEmh/) |
-| V6 | 2nd posted | Transform Android into Hacking Machine! | 1.2M | 20.6K | 1.6K | 191 | 11.37s | [Link](https://www.facebook.com/share/r/1KC2X8DhmH/) |
-| V7 📌 OLDEST | 1st posted | How to Become a Pro Hacker | 1.1M | 19.8K | 1.5K | 147 | 10.64s | [Link](https://www.facebook.com/share/r/1D4CySr4hg/) |
+| V1 ⭐ NEWEST | 8th posted | Change IP address every 3 second | 1.3M | 24,759 | 4,187 | 453 | — | [Link](https://www.facebook.com/share/v/1GTUG7McHk/) |
+| V2 | 7th posted | How to show all WiFi Password (Windows) | 1.1M | 12,712 | 2,105 | 156 | — | [Link](https://www.facebook.com/share/v/19M8u5AkL5/) |
+| V3 | 6th posted | 5 Chrome Extensions For Hackers! | 3.3M | 44.1K | 2.7K | 401 | 11.77s | [Link](https://www.facebook.com/share/r/1ByqdhCdHJ/) |
+| V4 | 5th posted | 7 Free Resources To Learn Hacking From Scratch | 1.9M | 28.6K | 1.5K | 273 | 10.57s | [Link](https://www.facebook.com/share/r/1K9mPUr8VM/) |
+| V5 | 4th posted | How To Turn Your Phone Into a Hacking Machine! | 1.5M | 22.3K | 1.9K | 137 | 11.67s | [Link](https://www.facebook.com/share/r/197d92Qr3Z/) |
+| V6 | 3rd posted | How to Setup a Laptop For Hacking Step By Step Guide! | 1.3M | 17.9K | 2.0K | 95 | 12.27s | [Link](https://www.facebook.com/share/r/1Bd6JsyEmh/) |
+| V7 | 2nd posted | Transform Android into Hacking Machine! | 1.2M | 20.6K | 1.6K | 191 | 11.37s | [Link](https://www.facebook.com/share/r/1KC2X8DhmH/) |
+| V8 📌 OLDEST | 1st posted | How to Become a Pro Hacker | 1.1M | 19.8K | 1.5K | 147 | 10.64s | [Link](https://www.facebook.com/share/r/1D4CySr4hg/) |
 
 ---
 
-## 📊 VIDEO #1 — "How to show all WiFi Password (Windows)" ⭐ NEWEST
+## 📊 VIDEO #1 — "Change IP address every 3 second" ⭐ NEWEST
+
+### 📈 Stats
+| Metric | Value | Analysis |
+|--------|-------|----------|
+| 👁️ Views | 1,300,000 | 1.3M |
+| 👍 Likes | 24,759 | Like Rate = **1.90% 🔺** — HIGHEST across all videos |
+| 💬 Comments | 453 | Comment Rate = **0.035% 🔺** — HIGHEST across all videos |
+| 🔁 Shares | 4,187 | Share Rate = **0.32% 🔺** — HIGHEST absolute shares per view |
+| 💫 Share:Like Ratio | **16.91% 🔺** | Extreme viral spread — practical + shocking combo |
+
+### 🎬 Technical Details
+| Property | Value |
+|----------|-------|
+| Duration | ⏳ Pending |
+| Format | Vertical 9:16 |
+| Visual | Kali Linux terminal (dark background, blue text) |
+| Caption shown | "and install the tor package" |
+| Music | ⏳ Pending |
+| Link | [Facebook](https://www.facebook.com/share/v/1GTUG7McHk/) |
+
+### 🔍 Notable Observations
+- **Triple record-breaker**: Highest like rate (1.90%), highest comment rate (0.035%), AND highest share count (4,187) — no other video comes close on all three.
+- **Kali Linux + Tor combo** — two known viral hooks combined: "hacker OS" aesthetic + "anonymity/privacy" angle. Maximum curiosity trigger.
+- **"Every 3 second"** — the specific time interval makes the claim feel precise and believable, not vague. Strong hook writing.
+- **Comments: 453** — nearly 3x more than most other videos. People are asking questions / tagging friends — community-building effect.
+- **Different visual style**: Blue Kali terminal vs. usual black+green — yet still viral. Content hook stronger than aesthetic formula.
+
+---
+
+## 📊 VIDEO #2 — "How to show all WiFi Password (Windows)"
 
 ### 📈 Stats
 | Metric | Value | Analysis |
