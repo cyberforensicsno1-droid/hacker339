@@ -17,6 +17,15 @@ import {
   BarChart2,
 } from "lucide-react";
 import { Link } from "wouter";
+import {
+  BarChart,
+  Bar,
+  XAxis,
+  YAxis,
+  Tooltip,
+  ResponsiveContainer,
+  Cell,
+} from "recharts";
 
 // ─── Data ────────────────────────────────────────────────────────────────────
 
@@ -284,7 +293,7 @@ function VideoTab({
   return (
     <button
       onClick={onClick}
-      className={`flex-1 md:flex-none text-left p-4 rounded-lg border font-mono text-sm transition-all ${
+      className={`w-full text-left p-4 rounded-lg border font-mono text-sm transition-all ${
         active
           ? "border-primary/60 bg-primary/10 text-primary shadow-[0_0_14px_-4px_rgba(0,255,65,0.4)]"
           : "border-border bg-card/30 text-muted-foreground hover:border-primary/30 hover:text-foreground"
@@ -306,9 +315,39 @@ function VideoTab({
 
 // ─── Main Page ───────────────────────────────────────────────────────────────
 
+type ChartMetricKey = "views" | "likes" | "shares" | "comments" | "shareLikeRatio";
+
+const CHART_METRICS: { key: ChartMetricKey; label: string; suffix: string; divisor: number }[] = [
+  { key: "views",          label: "Views",       suffix: "M", divisor: 1e6 },
+  { key: "likes",          label: "Likes",       suffix: "K", divisor: 1e3 },
+  { key: "shares",         label: "Shares",      suffix: "K", divisor: 1e3 },
+  { key: "comments",       label: "Comments",    suffix: "",  divisor: 1   },
+  { key: "shareLikeRatio", label: "Share:Like%", suffix: "%", divisor: 1   },
+];
+
+function ChartTooltip({ active, payload }: { active?: boolean; payload?: { payload: { name: string; fullTitle: string; value: number }; value: number }[] }) {
+  if (!active || !payload?.length) return null;
+  const d = payload[0].payload;
+  return (
+    <div className="bg-black/90 border border-primary/40 rounded p-3 font-mono text-xs max-w-[180px]">
+      <p className="text-primary font-bold mb-1">{d.name}</p>
+      <p className="text-white/70 text-[10px] leading-snug mb-2 line-clamp-2">{d.fullTitle}</p>
+      <p className="text-primary font-bold text-sm">{payload[0].value}</p>
+    </div>
+  );
+}
+
 export default function Home() {
   const [active, setActive] = useState(0);
+  const [chartMetric, setChartMetric] = useState<ChartMetricKey>("views");
   const v = VIDEOS[active];
+
+  const chartData = VIDEOS.map((vid) => ({
+    name: `V${vid.id}`,
+    fullTitle: vid.title,
+    value: parseFloat((vid[chartMetric] / CHART_METRICS.find((m) => m.key === chartMetric)!.divisor).toFixed(2)),
+    isActive: vid.id === v.id,
+  }));
 
   return (
     <div className="min-h-screen bg-background text-foreground selection:bg-primary/30 selection:text-primary">
@@ -350,7 +389,7 @@ export default function Home() {
             <p className="text-xs font-mono text-muted-foreground uppercase tracking-widest mb-4">
               Select Video
             </p>
-            <div className="flex flex-col sm:flex-row gap-3">
+            <div className="grid grid-cols-2 sm:grid-cols-3 lg:grid-cols-5 gap-3">
               {VIDEOS.map((vid, i) => (
                 <VideoTab
                   key={vid.id}
@@ -489,6 +528,76 @@ export default function Home() {
               </div>
             </motion.div>
           </AnimatePresence>
+
+          {/* ── Visual Chart Comparison ── */}
+          <section>
+            <SectionHeading prefix="Chart" title="Visual_Comparison" />
+
+            {/* Metric selector */}
+            <div className="flex flex-wrap gap-2 mb-6">
+              {CHART_METRICS.map((m) => (
+                <button
+                  key={m.key}
+                  onClick={() => setChartMetric(m.key)}
+                  className={`px-3 py-1.5 font-mono text-xs uppercase tracking-wider rounded border transition-all ${
+                    chartMetric === m.key
+                      ? "border-primary bg-primary/10 text-primary shadow-[0_0_12px_-4px_rgba(0,255,65,0.5)]"
+                      : "border-border text-muted-foreground hover:border-primary/40 hover:text-foreground"
+                  }`}
+                >
+                  {m.label}
+                </button>
+              ))}
+            </div>
+
+            <motion.div
+              key={chartMetric}
+              initial={{ opacity: 0, y: 8 }}
+              animate={{ opacity: 1, y: 0 }}
+              transition={{ duration: 0.35 }}
+              className="p-5 rounded-lg border border-border bg-card relative overflow-hidden"
+            >
+              <div className="absolute top-0 right-0 w-64 h-64 bg-primary/4 rounded-full blur-3xl pointer-events-none" />
+              <p className="text-[10px] font-mono text-muted-foreground uppercase tracking-widest mb-4">
+                {CHART_METRICS.find((m) => m.key === chartMetric)?.label} — all videos
+              </p>
+              <ResponsiveContainer width="100%" height={260}>
+                <BarChart data={chartData} margin={{ top: 4, right: 16, left: -8, bottom: 4 }} barCategoryGap="30%">
+                  <XAxis
+                    dataKey="name"
+                    tick={{ fill: "#888", fontFamily: "monospace", fontSize: 12 }}
+                    axisLine={false}
+                    tickLine={false}
+                  />
+                  <YAxis
+                    tick={{ fill: "#666", fontFamily: "monospace", fontSize: 10 }}
+                    axisLine={false}
+                    tickLine={false}
+                    tickFormatter={(val) =>
+                      CHART_METRICS.find((m) => m.key === chartMetric)!.suffix
+                        ? `${val}${CHART_METRICS.find((m) => m.key === chartMetric)!.suffix}`
+                        : String(val)
+                    }
+                  />
+                  <Tooltip content={<ChartTooltip />} cursor={{ fill: "rgba(0,255,65,0.05)" }} />
+                  <Bar dataKey="value" radius={[3, 3, 0, 0]} maxBarSize={72}>
+                    {chartData.map((entry, i) => (
+                      <Cell
+                        key={i}
+                        fill={entry.isActive ? "#00ff41" : "rgba(0,255,65,0.35)"}
+                        stroke={entry.isActive ? "#00ff41" : "transparent"}
+                        strokeWidth={1}
+                      />
+                    ))}
+                  </Bar>
+                </BarChart>
+              </ResponsiveContainer>
+              <p className="text-[10px] font-mono text-muted-foreground mt-2 text-center">
+                <span className="inline-block w-2.5 h-2.5 rounded-sm bg-primary/90 mr-1.5 align-middle" />
+                Currently selected video highlighted
+              </p>
+            </motion.div>
+          </section>
 
           {/* ── Side-by-Side Comparison ── */}
           <section>
