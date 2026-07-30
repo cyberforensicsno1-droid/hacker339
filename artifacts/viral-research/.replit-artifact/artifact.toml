@@ -1,0 +1,27 @@
+kind = "web"
+previewPath = "/"
+title = "Viral Research Report"
+version = "1.0.0"
+id = "artifacts/viral-research"
+router = "path"
+
+[[services]]
+name = "web"
+paths = [ "/" ]
+localPort = 25759
+
+[services.development]
+run = "pnpm --filter @workspace/viral-research run dev"
+
+[services.production]
+build = [ "pnpm", "--filter", "@workspace/viral-research", "run", "build" ]
+serve = "static"
+publicDir = "artifacts/viral-research/dist/public"
+
+[[services.production.rewrites]]
+from = "/*"
+to = "/index.html"
+
+[services.env]
+PORT = "25759"
+BASE_PATH = "/"
