@@ -10,16 +10,45 @@
 
 | Dashboard # | Chrono Order | Title | Views | Likes | Shares | Comments | Duration | Link |
 |---|---|-------|-------|-------|--------|----------|----------|------|
-| V1 ⭐ NEWEST | 6th posted | 5 Chrome Extensions For Hackers! | 3.3M | 44.1K | 2.7K | 401 | 11.77s | [Link](https://www.facebook.com/share/r/1ByqdhCdHJ/) |
-| V2 | 5th posted | 7 Free Resources To Learn Hacking From Scratch | 1.9M | 28.6K | 1.5K | 273 | 10.57s | [Link](https://www.facebook.com/share/r/1K9mPUr8VM/) |
-| V3 | 4th posted | How To Turn Your Phone Into a Hacking Machine! | 1.5M | 22.3K | 1.9K | 137 | 11.67s | [Link](https://www.facebook.com/share/r/197d92Qr3Z/) |
-| V4 | 3rd posted | How to Setup a Laptop For Hacking Step By Step Guide! | 1.3M | 17.9K | 2.0K | 95 | 12.27s | [Link](https://www.facebook.com/share/r/1Bd6JsyEmh/) |
-| V5 | 2nd posted | Transform Android into Hacking Machine! | 1.2M | 20.6K | 1.6K | 191 | 11.37s | [Link](https://www.facebook.com/share/r/1KC2X8DhmH/) |
-| V6 📌 OLDEST | 1st posted | How to Become a Pro Hacker | 1.1M | 19.8K | 1.5K | 147 | 10.64s | [Link](https://www.facebook.com/share/r/1D4CySr4hg/) |
+| V1 ⭐ NEWEST | 7th posted | How to show all WiFi Password (Windows) | 1.1M | 12,712 | 2,105 | 156 | — | [Link](https://www.facebook.com/share/v/19M8u5AkL5/) |
+| V2 | 6th posted | 5 Chrome Extensions For Hackers! | 3.3M | 44.1K | 2.7K | 401 | 11.77s | [Link](https://www.facebook.com/share/r/1ByqdhCdHJ/) |
+| V3 | 5th posted | 7 Free Resources To Learn Hacking From Scratch | 1.9M | 28.6K | 1.5K | 273 | 10.57s | [Link](https://www.facebook.com/share/r/1K9mPUr8VM/) |
+| V4 | 4th posted | How To Turn Your Phone Into a Hacking Machine! | 1.5M | 22.3K | 1.9K | 137 | 11.67s | [Link](https://www.facebook.com/share/r/197d92Qr3Z/) |
+| V5 | 3rd posted | How to Setup a Laptop For Hacking Step By Step Guide! | 1.3M | 17.9K | 2.0K | 95 | 12.27s | [Link](https://www.facebook.com/share/r/1Bd6JsyEmh/) |
+| V6 | 2nd posted | Transform Android into Hacking Machine! | 1.2M | 20.6K | 1.6K | 191 | 11.37s | [Link](https://www.facebook.com/share/r/1KC2X8DhmH/) |
+| V7 📌 OLDEST | 1st posted | How to Become a Pro Hacker | 1.1M | 19.8K | 1.5K | 147 | 10.64s | [Link](https://www.facebook.com/share/r/1D4CySr4hg/) |
 
 ---
 
-## 📊 VIDEO #1 — "5 Chrome Extensions For Hackers!"
+## 📊 VIDEO #1 — "How to show all WiFi Password (Windows)" ⭐ NEWEST
+
+### 📈 Stats
+| Metric | Value | Analysis |
+|--------|-------|----------|
+| 👁️ Views | 1,100,000 | 1.1M |
+| 👍 Likes | 12,712 | Like Rate = **1.16%** — lowest across all videos |
+| 💬 Comments | 156 | Comment Rate = 0.014% |
+| 🔁 Shares | 2,105 | Share Rate = **0.19%** — one of highest |
+| 💫 Share:Like Ratio | **16.56% 🔺** | HIGHEST EVER — "Save to use later" content |
+
+### 🎬 Technical Details
+| Property | Value |
+|----------|-------|
+| Duration | ⏳ Pending |
+| Format | Vertical (9:16 expected) |
+| Music | ⏳ Pending |
+| Caption Hashtag | ⏳ Pending |
+| Link | [Facebook](https://www.facebook.com/share/v/19M8u5AkL5/) |
+
+### 🔍 Notable Observations
+- **Share:Like ratio 16.56%** — by far the highest in the entire dataset. People share this to *save and use later* (WiFi password trick is a reference tool).
+- **Lowest like rate (1.16%)** — "utility content" gets fewer emotional likes but maximum practical shares. Different engagement pattern from hacking resource videos.
+- **Topic shift**: First Windows-specific tutorial in the dataset — practical OS trick vs. hacking niche content. New audience segment.
+- **Duration/music pending** — more data needed from video file upload.
+
+---
+
+## 📊 VIDEO #2 — "5 Chrome Extensions For Hackers!"
 
 ### 📈 Stats
 | Metric | Value | Analysis |
