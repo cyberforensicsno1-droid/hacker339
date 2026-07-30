@@ -93,16 +93,34 @@ const VIDEOS = [
     shareLikeRatio: 11.37,
     commentRate: 0.007,
   },
+  {
+    id: 5,
+    title: "Transform Android into Hacking Machine!",
+    caption: "Transform Android into Hacking Mechine #infosec",
+    link: "https://www.facebook.com/share/r/1KC2X8DhmH/",
+    views: 1200000,
+    likes: 20630,
+    shares: 1596,
+    comments: 191,
+    duration: "11.37s",
+    format: "720×1280 (9:16)",
+    fps: "30 FPS",
+    music: "Tony Dark Eyes · Walk (Instrumental)",
+    likeRate: 1.72,
+    shareRate: 0.133,
+    shareLikeRatio: 7.74,
+    commentRate: 0.016,
+  },
 ];
 
 const PATTERNS = [
-  { label: "Duration", v1: "11.77s", v2: "10.57s", v3: "11.67s", v4: "12.27s", note: "All ~12 seconds" },
-  { label: "Format", v1: "9:16 Vertical", v2: "9:16 Vertical", v3: "9:16 Vertical", v4: "9:16 Vertical", note: "Always Reels format" },
-  { label: "Music Style", v1: "Slowed + Dark", v2: "Slowed + Dark", v3: "Game Over Beat", v4: "Slowed + Dark", note: "Consistent dark energy" },
-  { label: "Hashtag", v1: "#infosec", v2: "#infosec", v3: "#infosec", v4: "#infosec", note: "Same niche hashtag" },
-  { label: "Visual Theme", v1: "Black + Green", v2: "Black + Green", v3: "Black + Purple", v4: "Black + Red", note: "Dark brand consistent" },
-  { label: "Title Format", v1: "Number + Tool", v2: "Number + Resource", v3: "Action + Device", v4: "How-to + Device", note: "Curiosity hook always" },
-  { label: "Share:Like Ratio", v1: "6.1%", v2: "5.24%", v3: "8.7%", v4: "11.37% ↑", note: "V4 highest — step guides spread" },
+  { label: "Duration", v1: "11.77s", v2: "10.57s", v3: "11.67s", v4: "12.27s", v5: "11.37s", note: "All ~11–12 seconds" },
+  { label: "Format", v1: "9:16", v2: "9:16", v3: "9:16", v4: "9:16", v5: "9:16", note: "Always Reels format" },
+  { label: "Music Style", v1: "Dark Slowed", v2: "Dark Slowed", v3: "Game Over", v4: "Dark Slowed", v5: "Walk Instr.", note: "Consistent dark energy" },
+  { label: "Hashtag", v1: "#infosec", v2: "#infosec", v3: "#infosec", v4: "#infosec", v5: "#infosec", note: "Same niche hashtag" },
+  { label: "Visual Theme", v1: "Black+Green", v2: "Black+Green", v3: "Black+Purple", v4: "Black+Red", v5: "Black+Green", note: "Dark brand consistent" },
+  { label: "Title Format", v1: "Number+Tool", v2: "Number+Res.", v3: "Action+Phone", v4: "How-to+Laptop", v5: "Action+Android", note: "Device/resource hook" },
+  { label: "Share:Like %", v1: "6.1%", v2: "5.24%", v3: "8.7%", v4: "11.37% ↑", v5: "7.74%", note: "All above 5% — viral" },
 ];
 
 const TAKEAWAYS = [
@@ -479,56 +497,62 @@ export default function Home() {
               initial={{ opacity: 0, y: 16 }}
               whileInView={{ opacity: 1, y: 0 }}
               viewport={{ once: true }}
-              className="rounded-lg border border-border bg-card overflow-hidden relative"
+              className="rounded-lg border border-border bg-card overflow-x-auto relative"
             >
               <div className="absolute top-0 left-0 w-1 h-full bg-primary" />
 
               {/* Header row */}
-              <div className="grid grid-cols-[1fr_1fr_1fr_1fr_1fr] border-b border-border/60 bg-black/30">
-                <div className="py-3 px-4 font-mono text-[10px] text-muted-foreground uppercase tracking-widest border-r border-border/40">
+              <div className="grid grid-cols-[1fr_1fr_1fr_1fr_1fr_1fr] border-b border-border/60 bg-black/30 min-w-[640px]">
+                <div className="py-3 px-3 font-mono text-[10px] text-muted-foreground uppercase tracking-widest border-r border-border/40">
                   Metric
                 </div>
-                <div className="py-3 px-4 font-mono text-[10px] text-primary uppercase tracking-widest border-r border-border/40 flex items-center gap-1.5">
-                  <span className="w-1.5 h-1.5 rounded-full bg-primary" /> V1
+                <div className="py-3 px-3 font-mono text-[10px] text-primary uppercase tracking-widest border-r border-border/40 flex items-center gap-1">
+                  <span className="w-1.5 h-1.5 rounded-full bg-primary shrink-0" /> V1
                 </div>
-                <div className="py-3 px-4 font-mono text-[10px] text-primary/70 uppercase tracking-widest border-r border-border/40 flex items-center gap-1.5">
-                  <span className="w-1.5 h-1.5 rounded-full bg-primary/50" /> V2
+                <div className="py-3 px-3 font-mono text-[10px] text-primary/70 uppercase tracking-widest border-r border-border/40 flex items-center gap-1">
+                  <span className="w-1.5 h-1.5 rounded-full bg-primary/50 shrink-0" /> V2
                 </div>
-                <div className="py-3 px-4 font-mono text-[10px] text-primary/50 uppercase tracking-widest border-r border-border/40 flex items-center gap-1.5">
-                  <span className="w-1.5 h-1.5 rounded-full bg-primary/30" /> V3
+                <div className="py-3 px-3 font-mono text-[10px] text-primary/50 uppercase tracking-widest border-r border-border/40 flex items-center gap-1">
+                  <span className="w-1.5 h-1.5 rounded-full bg-primary/30 shrink-0" /> V3
                 </div>
-                <div className="py-3 px-4 font-mono text-[10px] text-primary/40 uppercase tracking-widest flex items-center gap-1.5">
-                  <span className="w-1.5 h-1.5 rounded-full bg-primary/20" /> V4
+                <div className="py-3 px-3 font-mono text-[10px] text-primary/40 uppercase tracking-widest border-r border-border/40 flex items-center gap-1">
+                  <span className="w-1.5 h-1.5 rounded-full bg-primary/20 shrink-0" /> V4
+                </div>
+                <div className="py-3 px-3 font-mono text-[10px] text-primary/30 uppercase tracking-widest flex items-center gap-1">
+                  <span className="w-1.5 h-1.5 rounded-full bg-primary/15 shrink-0" /> V5
                 </div>
               </div>
 
               {[
-                ["Views",     "3.3M",   "1.9M",   "1.5M",   "1.3M"],
-                ["Likes",     "44.1K",  "28.6K",  "22.3K",  "17.9K"],
-                ["Shares",    "2.7K",   "1.5K",   "1.9K",   "2.0K"],
-                ["Comments",  "401",    "273",    "137",    "95"],
-                ["Duration",  "11.77s", "10.57s", "11.67s", "12.27s"],
-                ["Like Rate", "1.34%",  "1.51%",  "1.49%",  "1.37%"],
-                ["Share:Like","6.1%",   "5.24%",  "8.7%",   "11.37% ↑"],
-              ].map(([metric, v1, v2, v3, v4], i) => (
+                ["Views",     "3.3M",   "1.9M",   "1.5M",   "1.3M",   "1.2M"],
+                ["Likes",     "44.1K",  "28.6K",  "22.3K",  "17.9K",  "20.6K"],
+                ["Shares",    "2.7K",   "1.5K",   "1.9K",   "2.0K",   "1.6K"],
+                ["Comments",  "401",    "273",    "137",    "95",     "191"],
+                ["Duration",  "11.77s", "10.57s", "11.67s", "12.27s", "11.37s"],
+                ["Like Rate", "1.34%",  "1.51%",  "1.49%",  "1.37%",  "1.72% ↑"],
+                ["Share:Like","6.1%",   "5.24%",  "8.7%",   "11.37% ↑","7.74%"],
+              ].map(([metric, v1, v2, v3, v4, v5], i) => (
                 <div
                   key={metric}
-                  className={`grid grid-cols-[1fr_1fr_1fr_1fr_1fr] border-b border-border/30 last:border-0 hover:bg-white/[0.02] transition-colors ${i % 2 === 0 ? "" : "bg-white/[0.01]"}`}
+                  className={`grid grid-cols-[1fr_1fr_1fr_1fr_1fr_1fr] border-b border-border/30 last:border-0 hover:bg-white/[0.02] transition-colors min-w-[640px] ${i % 2 === 0 ? "" : "bg-white/[0.01]"}`}
                 >
-                  <div className="py-3 px-4 font-mono text-xs text-muted-foreground border-r border-border/30">
+                  <div className="py-3 px-3 font-mono text-xs text-muted-foreground border-r border-border/30">
                     {metric}
                   </div>
-                  <div className="py-3 px-4 font-mono text-sm text-white font-medium border-r border-border/30">
+                  <div className="py-3 px-3 font-mono text-sm text-white font-medium border-r border-border/30">
                     {v1}
                   </div>
-                  <div className={`py-3 px-4 font-mono text-sm font-medium border-r border-border/30 ${v2.includes("↑") ? "text-primary" : "text-white/80"}`}>
+                  <div className={`py-3 px-3 font-mono text-sm font-medium border-r border-border/30 ${v2.includes("↑") ? "text-primary" : "text-white/80"}`}>
                     {v2}
                   </div>
-                  <div className={`py-3 px-4 font-mono text-sm font-medium border-r border-border/30 ${v3.includes("↑") ? "text-primary" : "text-white/80"}`}>
+                  <div className={`py-3 px-3 font-mono text-sm font-medium border-r border-border/30 ${v3.includes("↑") ? "text-primary" : "text-white/80"}`}>
                     {v3}
                   </div>
-                  <div className={`py-3 px-4 font-mono text-sm font-medium ${v4.includes("↑") ? "text-primary" : "text-white/80"}`}>
+                  <div className={`py-3 px-3 font-mono text-sm font-medium border-r border-border/30 ${v4.includes("↑") ? "text-primary" : "text-white/80"}`}>
                     {v4}
+                  </div>
+                  <div className={`py-3 px-3 font-mono text-sm font-medium ${v5.includes("↑") ? "text-primary" : "text-white/80"}`}>
+                    {v5}
                   </div>
                 </div>
               ))}
@@ -546,13 +570,14 @@ export default function Home() {
                   whileInView={{ opacity: 1, x: 0 }}
                   viewport={{ once: true }}
                   transition={{ delay: i * 0.05 }}
-                  className="grid grid-cols-[120px_1fr_1fr_1fr_1fr_auto] items-center gap-2 p-3.5 rounded-lg border border-border/40 bg-card/40 hover:border-primary/30 hover:bg-card/60 transition-all group text-sm font-mono"
+                  className="grid grid-cols-[110px_1fr_1fr_1fr_1fr_1fr_auto] items-center gap-2 p-3 rounded-lg border border-border/40 bg-card/40 hover:border-primary/30 hover:bg-card/60 transition-all group text-sm font-mono min-w-[700px]"
                 >
                   <span className="text-muted-foreground text-xs uppercase tracking-wide">{p.label}</span>
                   <span className="text-white/80 text-xs truncate">{p.v1}</span>
                   <span className="text-white/80 text-xs truncate">{p.v2}</span>
                   <span className={`text-xs truncate ${p.v3.includes("↑") ? "text-primary font-bold" : "text-white/80"}`}>{p.v3}</span>
                   <span className={`text-xs truncate ${p.v4.includes("↑") ? "text-primary font-bold" : "text-white/80"}`}>{p.v4}</span>
+                  <span className={`text-xs truncate ${p.v5.includes("↑") ? "text-primary font-bold" : "text-white/80"}`}>{p.v5}</span>
                   <span className="flex items-center gap-1.5 text-primary text-[10px] bg-primary/10 border border-primary/20 px-2 py-0.5 rounded-full whitespace-nowrap group-hover:bg-primary/20 transition-colors">
                     <Zap className="w-2.5 h-2.5" /> {p.note}
                   </span>
@@ -660,6 +685,7 @@ export default function Home() {
                   { done: true, text: "Video #2 analyzed — 7 Free Resources To Learn Hacking (1.9M)" },
                   { done: true, text: "Video #3 analyzed — How To Turn Your Phone Into a Hacking Machine (1.5M)" },
                   { done: true, text: "Video #4 analyzed — How to Setup a Laptop For Hacking Step By Step Guide (1.3M)" },
+                  { done: true, text: "Video #5 analyzed — Transform Android into Hacking Machine (1.2M)" },
                   { done: false, text: "Posting frequency pattern — pending" },
                   { done: false, text: "Full page niche audit — pending" },
                 ].map((item, i) => (
