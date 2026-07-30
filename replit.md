@@ -1,6 +1,6 @@
-# [Project name]
+# hacker339
 
-_Replace the heading above with the project's name, and this line with one sentence describing what this app does for users._
+Viral video analysis dashboard tracking performance of infosec content from Hacker339, backed by an Express API and PostgreSQL.
 
 ## Run & Operate
 

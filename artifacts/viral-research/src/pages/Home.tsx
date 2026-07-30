@@ -18,15 +18,14 @@ import {
 } from "lucide-react";
 import { Link } from "wouter";
 import {
-  LineChart,
-  Line,
+  BarChart,
+  Bar,
   XAxis,
   YAxis,
   Tooltip,
   ResponsiveContainer,
   CartesianGrid,
   Legend,
-  Dot,
 } from "recharts";
 
 // ─── Data ────────────────────────────────────────────────────────────────────
@@ -589,7 +588,7 @@ export default function Home() {
               </p>
 
               <ResponsiveContainer width="100%" height={300}>
-                <LineChart data={LINE_DATA} margin={{ top: 8, right: 24, left: -12, bottom: 4 }}>
+                <BarChart data={LINE_DATA} margin={{ top: 8, right: 24, left: -12, bottom: 4 }} barCategoryGap="25%">
                   <CartesianGrid stroke="rgba(255,255,255,0.04)" strokeDasharray="3 3" vertical={false} />
                   <XAxis
                     dataKey="name"
@@ -604,19 +603,16 @@ export default function Home() {
                     tickLine={false}
                     tickFormatter={(v) => `${v}%`}
                   />
-                  <Tooltip content={<LineTooltip />} cursor={{ stroke: "rgba(255,255,255,0.08)", strokeWidth: 1 }} />
+                  <Tooltip content={<LineTooltip />} cursor={{ fill: "rgba(255,255,255,0.04)" }} />
                   {LINE_SERIES.map((s) => (
-                    <Line
+                    <Bar
                       key={s.key}
-                      type="monotone"
                       dataKey={s.key}
-                      stroke={s.color}
-                      strokeWidth={2.5}
-                      dot={<Dot r={5} fill={s.color} stroke="black" strokeWidth={1.5} />}
-                      activeDot={{ r: 7, fill: s.color, stroke: "black", strokeWidth: 2 }}
+                      fill={s.color}
+                      radius={[3, 3, 0, 0]}
                     />
                   ))}
-                </LineChart>
+                </BarChart>
               </ResponsiveContainer>
             </motion.div>
           </section>
