@@ -10,7 +10,8 @@
 
 | Dashboard # | Chrono Order | Title | Views | Likes | Shares | Comments | Duration | Link |
 |---|---|-------|-------|-------|--------|----------|----------|------|
-| V1 ⭐ NEWEST | 12th posted | Install Kali Linux in vmware (Windows) | 3.4K | 75 | 7 | 4 | — | [Link](https://www.facebook.com/share/v/1BxPARUEB9/) |
+| V1 ⭐ NEWEST | 13th posted | Terminal GPT | 4.4K | 110 | 10 | 2 | — | [Link](https://www.facebook.com/share/v/1Dzcv9inKz/) |
+| V2 | 12th posted | Install Kali Linux in vmware (Windows) | 3.4K | 75 | 7 | 4 | — | [Link](https://www.facebook.com/share/v/1BxPARUEB9/) |
 | V2 | 11th posted | Kali Linux Tools Explanation in 5 minutes | 628K | 14,071 | 2,575 | 123 | ~5 min | [Link](https://www.facebook.com/share/v/17pw81misG/) |
 | V2 | 10th posted | Power of Flipper Zero | 340K | 3,311 | 275 | 142 | — | [Link](https://www.facebook.com/share/v/19HkfGfohs/) |
 | V2 | 9th posted | Social media OSINT in 8 minutes | 995K | 18,850 | 3,869 | 139 | ~8 min | — |
