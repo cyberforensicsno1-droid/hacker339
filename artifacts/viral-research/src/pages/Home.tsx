@@ -18,13 +18,15 @@ import {
 } from "lucide-react";
 import { Link } from "wouter";
 import {
-  BarChart,
-  Bar,
+  LineChart,
+  Line,
   XAxis,
   YAxis,
   Tooltip,
   ResponsiveContainer,
-  Cell,
+  CartesianGrid,
+  Legend,
+  Dot,
 } from "recharts";
 
 // ─── Data ────────────────────────────────────────────────────────────────────
@@ -315,39 +317,68 @@ function VideoTab({
 
 // ─── Main Page ───────────────────────────────────────────────────────────────
 
-type ChartMetricKey = "views" | "likes" | "shares" | "comments" | "shareLikeRatio";
+// ─── Line Chart Config ───────────────────────────────────────────────────────
 
-const CHART_METRICS: { key: ChartMetricKey; label: string; suffix: string; divisor: number }[] = [
-  { key: "views",          label: "Views",       suffix: "M", divisor: 1e6 },
-  { key: "likes",          label: "Likes",       suffix: "K", divisor: 1e3 },
-  { key: "shares",         label: "Shares",      suffix: "K", divisor: 1e3 },
-  { key: "comments",       label: "Comments",    suffix: "",  divisor: 1   },
-  { key: "shareLikeRatio", label: "Share:Like%", suffix: "%", divisor: 1   },
+const LINE_SERIES = [
+  { key: "Views",      color: "#00ff41", label: "Views (M)"      },
+  { key: "Likes",      color: "#ffd700", label: "Likes (K)"      },
+  { key: "Shares",     color: "#ff6b35", label: "Shares (K)"     },
+  { key: "Comments",   color: "#a78bfa", label: "Comments"       },
+  { key: "ShareLike",  color: "#38bdf8", label: "Share:Like %"   },
 ];
 
-function ChartTooltip({ active, payload }: { active?: boolean; payload?: { payload: { name: string; fullTitle: string; value: number }; value: number }[] }) {
+const maxViews      = Math.max(...VIDEOS.map((v) => v.views));
+const maxLikes      = Math.max(...VIDEOS.map((v) => v.likes));
+const maxShares     = Math.max(...VIDEOS.map(...[v => v.shares]));
+const maxComments   = Math.max(...VIDEOS.map((v) => v.comments));
+const maxShareLike  = Math.max(...VIDEOS.map((v) => v.shareLikeRatio));
+
+const LINE_DATA = VIDEOS.map((vid) => ({
+  name:      `V${vid.id}`,
+  fullTitle: vid.title,
+  Views:     parseFloat(((vid.views      / maxViews)     * 100).toFixed(1)),
+  Likes:     parseFloat(((vid.likes      / maxLikes)     * 100).toFixed(1)),
+  Shares:    parseFloat(((vid.shares     / maxShares)    * 100).toFixed(1)),
+  Comments:  parseFloat(((vid.comments   / maxComments)  * 100).toFixed(1)),
+  ShareLike: parseFloat(((vid.shareLikeRatio / maxShareLike) * 100).toFixed(1)),
+  // raw for tooltip
+  _views:      vid.views,
+  _likes:      vid.likes,
+  _shares:     vid.shares,
+  _comments:   vid.comments,
+  _shareLike:  vid.shareLikeRatio,
+}));
+
+function LineTooltip({ active, payload, label }: { active?: boolean; payload?: { color: string; name: string; value: number; payload: (typeof LINE_DATA)[0] }[]; label?: string }) {
   if (!active || !payload?.length) return null;
-  const d = payload[0].payload;
+  const raw = payload[0].payload;
+  const actuals: Record<string, string> = {
+    Views:     `${(raw._views / 1e6).toFixed(2)}M`,
+    Likes:     `${(raw._likes / 1e3).toFixed(1)}K`,
+    Shares:    `${(raw._shares / 1e3).toFixed(1)}K`,
+    Comments:  String(raw._comments),
+    ShareLike: `${raw._shareLike}%`,
+  };
   return (
-    <div className="bg-black/90 border border-primary/40 rounded p-3 font-mono text-xs max-w-[180px]">
-      <p className="text-primary font-bold mb-1">{d.name}</p>
-      <p className="text-white/70 text-[10px] leading-snug mb-2 line-clamp-2">{d.fullTitle}</p>
-      <p className="text-primary font-bold text-sm">{payload[0].value}</p>
+    <div className="bg-black/95 border border-white/10 rounded-lg p-3 font-mono text-xs shadow-xl min-w-[160px]">
+      <p className="text-white/50 text-[10px] uppercase tracking-wider mb-2">{label}</p>
+      <p className="text-white/70 text-[10px] leading-snug mb-3 line-clamp-2">{raw.fullTitle}</p>
+      {payload.map((p) => (
+        <div key={p.name} className="flex items-center justify-between gap-3 mb-1">
+          <span className="flex items-center gap-1.5">
+            <span className="w-2 h-2 rounded-full shrink-0" style={{ background: p.color }} />
+            <span style={{ color: p.color }} className="text-[10px]">{p.name}</span>
+          </span>
+          <span className="text-white font-bold text-[11px]">{actuals[p.name]}</span>
+        </div>
+      ))}
     </div>
   );
 }
 
 export default function Home() {
   const [active, setActive] = useState(0);
-  const [chartMetric, setChartMetric] = useState<ChartMetricKey>("views");
   const v = VIDEOS[active];
-
-  const chartData = VIDEOS.map((vid) => ({
-    name: `V${vid.id}`,
-    fullTitle: vid.title,
-    value: parseFloat((vid[chartMetric] / CHART_METRICS.find((m) => m.key === chartMetric)!.divisor).toFixed(2)),
-    isActive: vid.id === v.id,
-  }));
 
   return (
     <div className="min-h-screen bg-background text-foreground selection:bg-primary/30 selection:text-primary">
@@ -533,69 +564,60 @@ export default function Home() {
           <section>
             <SectionHeading prefix="Chart" title="Visual_Comparison" />
 
-            {/* Metric selector */}
-            <div className="flex flex-wrap gap-2 mb-6">
-              {CHART_METRICS.map((m) => (
-                <button
-                  key={m.key}
-                  onClick={() => setChartMetric(m.key)}
-                  className={`px-3 py-1.5 font-mono text-xs uppercase tracking-wider rounded border transition-all ${
-                    chartMetric === m.key
-                      ? "border-primary bg-primary/10 text-primary shadow-[0_0_12px_-4px_rgba(0,255,65,0.5)]"
-                      : "border-border text-muted-foreground hover:border-primary/40 hover:text-foreground"
-                  }`}
-                >
-                  {m.label}
-                </button>
+            {/* Colour legend */}
+            <div className="flex flex-wrap gap-x-5 gap-y-2 mb-5 px-1">
+              {LINE_SERIES.map((s) => (
+                <span key={s.key} className="flex items-center gap-1.5 font-mono text-xs text-muted-foreground">
+                  <span className="w-5 h-0.5 rounded-full inline-block" style={{ background: s.color }} />
+                  <span style={{ color: s.color }}>{s.label}</span>
+                </span>
               ))}
             </div>
 
             <motion.div
-              key={chartMetric}
               initial={{ opacity: 0, y: 8 }}
-              animate={{ opacity: 1, y: 0 }}
-              transition={{ duration: 0.35 }}
-              className="p-5 rounded-lg border border-border bg-card relative overflow-hidden"
+              whileInView={{ opacity: 1, y: 0 }}
+              viewport={{ once: true }}
+              transition={{ duration: 0.45 }}
+              className="p-5 pt-6 rounded-xl border border-border bg-card relative overflow-hidden shadow-[0_0_40px_-15px_rgba(0,255,65,0.1)]"
             >
-              <div className="absolute top-0 right-0 w-64 h-64 bg-primary/4 rounded-full blur-3xl pointer-events-none" />
+              <div className="absolute -top-10 -right-10 w-56 h-56 bg-primary/5 rounded-full blur-3xl pointer-events-none" />
+              <div className="absolute bottom-0 left-0 w-40 h-40 bg-blue-500/5 rounded-full blur-3xl pointer-events-none" />
+
               <p className="text-[10px] font-mono text-muted-foreground uppercase tracking-widest mb-4">
-                {CHART_METRICS.find((m) => m.key === chartMetric)?.label} — all videos
+                Normalised score (% of max) — hover for actual values
               </p>
-              <ResponsiveContainer width="100%" height={260}>
-                <BarChart data={chartData} margin={{ top: 4, right: 16, left: -8, bottom: 4 }} barCategoryGap="30%">
+
+              <ResponsiveContainer width="100%" height={300}>
+                <LineChart data={LINE_DATA} margin={{ top: 8, right: 24, left: -12, bottom: 4 }}>
+                  <CartesianGrid stroke="rgba(255,255,255,0.04)" strokeDasharray="3 3" vertical={false} />
                   <XAxis
                     dataKey="name"
-                    tick={{ fill: "#888", fontFamily: "monospace", fontSize: 12 }}
+                    tick={{ fill: "#666", fontFamily: "monospace", fontSize: 12 }}
                     axisLine={false}
                     tickLine={false}
                   />
                   <YAxis
-                    tick={{ fill: "#666", fontFamily: "monospace", fontSize: 10 }}
+                    domain={[0, 105]}
+                    tick={{ fill: "#555", fontFamily: "monospace", fontSize: 10 }}
                     axisLine={false}
                     tickLine={false}
-                    tickFormatter={(val) =>
-                      CHART_METRICS.find((m) => m.key === chartMetric)!.suffix
-                        ? `${val}${CHART_METRICS.find((m) => m.key === chartMetric)!.suffix}`
-                        : String(val)
-                    }
+                    tickFormatter={(v) => `${v}%`}
                   />
-                  <Tooltip content={<ChartTooltip />} cursor={{ fill: "rgba(0,255,65,0.05)" }} />
-                  <Bar dataKey="value" radius={[3, 3, 0, 0]} maxBarSize={72}>
-                    {chartData.map((entry, i) => (
-                      <Cell
-                        key={i}
-                        fill={entry.isActive ? "#00ff41" : "rgba(0,255,65,0.35)"}
-                        stroke={entry.isActive ? "#00ff41" : "transparent"}
-                        strokeWidth={1}
-                      />
-                    ))}
-                  </Bar>
-                </BarChart>
+                  <Tooltip content={<LineTooltip />} cursor={{ stroke: "rgba(255,255,255,0.08)", strokeWidth: 1 }} />
+                  {LINE_SERIES.map((s) => (
+                    <Line
+                      key={s.key}
+                      type="monotone"
+                      dataKey={s.key}
+                      stroke={s.color}
+                      strokeWidth={2.5}
+                      dot={<Dot r={5} fill={s.color} stroke="black" strokeWidth={1.5} />}
+                      activeDot={{ r: 7, fill: s.color, stroke: "black", strokeWidth: 2 }}
+                    />
+                  ))}
+                </LineChart>
               </ResponsiveContainer>
-              <p className="text-[10px] font-mono text-muted-foreground mt-2 text-center">
-                <span className="inline-block w-2.5 h-2.5 rounded-sm bg-primary/90 mr-1.5 align-middle" />
-                Currently selected video highlighted
-              </p>
             </motion.div>
           </section>
 
