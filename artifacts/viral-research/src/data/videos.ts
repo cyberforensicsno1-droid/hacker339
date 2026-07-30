@@ -47,6 +47,36 @@ export const DEFAULT_VIDEOS: VideoData[] = [
     fps: "30 FPS",
     music: "Eyes · Dark (Slowed)",
   },
+  {
+    id: 9,
+    title: "Change IP address every 3 second",
+    caption: "Change your IP every 3 seconds using Tor on Kali Linux",
+    link: "https://www.facebook.com/share/v/1GTUG7McHk/",
+    views: 1300000,
+    likes: 24759,
+    shares: 4187,
+    comments: 453,
+    duration: "—",
+    durationSec: 0,
+    format: "720×1280 (9:16)",
+    fps: "30 FPS",
+    music: "—",
+  },
+  {
+    id: 10,
+    title: "How to show all WiFi Password (Windows)",
+    caption: "Show all saved WiFi passwords on Windows",
+    link: "https://www.facebook.com/share/v/19M8u5AkL5/",
+    views: 1100000,
+    likes: 12712,
+    shares: 2105,
+    comments: 156,
+    duration: "—",
+    durationSec: 0,
+    format: "720×1280 (9:16)",
+    fps: "30 FPS",
+    music: "—",
+  },
 ];
 
 const STORAGE_KEY = "hacker339_videos";
@@ -57,7 +87,14 @@ export function loadVideos(): VideoData[] {
     if (!raw) return DEFAULT_VIDEOS;
     const parsed: VideoData[] = JSON.parse(raw);
     if (!Array.isArray(parsed) || parsed.length === 0) return DEFAULT_VIDEOS;
-    return parsed;
+    // Merge: keep localStorage entries, but always include DEFAULT_VIDEOS entries
+    // that aren't already present (matched by link). This ensures newly added
+    // DEFAULT_VIDEOS entries always show up even with stale localStorage data.
+    const existingLinks = new Set(parsed.map((v) => v.link));
+    const missing = DEFAULT_VIDEOS.filter((v) => !existingLinks.has(v.link));
+    const merged = [...parsed, ...missing];
+    if (missing.length > 0) saveVideos(merged);
+    return merged;
   } catch {
     return DEFAULT_VIDEOS;
   }
