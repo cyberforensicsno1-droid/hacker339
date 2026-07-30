@@ -10,7 +10,8 @@
 
 | Dashboard # | Chrono Order | Title | Views | Likes | Shares | Comments | Duration | Link |
 |---|---|-------|-------|-------|--------|----------|----------|------|
-| V1 ⭐ NEWEST | 9th posted | Social media OSINT in 8 minutes | 995K | 18,850 | 3,869 | 139 | ~8 min | — |
+| V1 ⭐ NEWEST | 10th posted | Power of Flipper Zero | 340K | 3,311 | 275 | 142 | — | [Link](https://www.facebook.com/share/v/19HkfGfohs/) |
+| V2 | 9th posted | Social media OSINT in 8 minutes | 995K | 18,850 | 3,869 | 139 | ~8 min | — |
 | V2 | 8th posted | Change IP address every 3 second | 1.3M | 24,759 | 4,187 | 453 | — | [Link](https://www.facebook.com/share/v/1GTUG7McHk/) |
 | V2 | 7th posted | How to show all WiFi Password (Windows) | 1.1M | 12,712 | 2,105 | 156 | — | [Link](https://www.facebook.com/share/v/19M8u5AkL5/) |
 | V3 | 6th posted | 5 Chrome Extensions For Hackers! | 3.3M | 44.1K | 2.7K | 401 | 11.77s | [Link](https://www.facebook.com/share/r/1ByqdhCdHJ/) |
