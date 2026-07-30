@@ -15,6 +15,10 @@ import {
   GitCompare,
   ChevronRight,
   BarChart2,
+  TrendingUp,
+  TrendingDown,
+  Award,
+  ArrowRight,
 } from "lucide-react";
 import { Link } from "wouter";
 import {
@@ -161,6 +165,22 @@ const TAKEAWAYS = [
   "\"Phone into Hacking Machine\" hit 8.7% Share:Like — device transformation hooks outperform list formats for shares",
   "Consistent 9:16 vertical format across all videos confirms Reels-first strategy is working",
 ];
+
+// ─── Page-level aggregates ───────────────────────────────────────────────────
+
+const totalViews    = VIDEOS.reduce((s, v) => s + v.views, 0);
+const totalLikes    = VIDEOS.reduce((s, v) => s + v.likes, 0);
+const totalShares   = VIDEOS.reduce((s, v) => s + v.shares, 0);
+const avgLikeRate   = parseFloat((VIDEOS.reduce((s, v) => s + v.likeRate, 0) / VIDEOS.length).toFixed(2));
+const avgShareLike  = parseFloat((VIDEOS.reduce((s, v) => s + v.shareLikeRatio, 0) / VIDEOS.length).toFixed(2));
+
+// Actual views per video (for the trend chart)
+const VIEWS_TREND = VIDEOS.map((v) => ({
+  name:  `V${v.id}`,
+  views: v.views,
+  viewsM: parseFloat((v.views / 1e6).toFixed(2)),
+  title: v.title,
+}));
 
 // ─── Animated Number ─────────────────────────────────────────────────────────
 
@@ -432,6 +452,47 @@ export default function Home() {
 
         <main className="container mx-auto px-4 md:px-6 py-10 max-w-5xl space-y-20">
 
+          {/* ── Page Growth Summary ── */}
+          <section>
+            <motion.div
+              initial={{ opacity: 0, y: -8 }}
+              animate={{ opacity: 1, y: 0 }}
+              transition={{ duration: 0.5 }}
+              className="rounded-xl border border-primary/25 bg-primary/[0.03] p-5 md:p-6 relative overflow-hidden"
+            >
+              <div className="absolute top-0 left-0 w-full h-0.5 bg-gradient-to-r from-primary/10 via-primary to-primary/10" />
+              <div className="absolute -right-12 -top-12 w-48 h-48 bg-primary/5 rounded-full blur-3xl pointer-events-none" />
+
+              {/* Verdict badge */}
+              <div className="flex flex-wrap items-center gap-3 mb-5">
+                <span className="text-[10px] font-mono text-muted-foreground uppercase tracking-widest">Page Growth Status</span>
+                <span className="flex items-center gap-1.5 px-3 py-1 rounded-full bg-yellow-500/10 border border-yellow-500/30 text-yellow-400 font-mono text-[10px] uppercase tracking-wider">
+                  <TrendingDown className="w-3 h-3" /> Views Normalizing
+                </span>
+                <span className="flex items-center gap-1.5 px-3 py-1 rounded-full bg-primary/10 border border-primary/30 text-primary font-mono text-[10px] uppercase tracking-wider">
+                  <TrendingUp className="w-3 h-3" /> Engagement Rising
+                </span>
+              </div>
+
+              {/* Stat pills */}
+              <div className="grid grid-cols-2 md:grid-cols-5 gap-3">
+                {[
+                  { label: "Total Reach",    value: `${(totalViews / 1e6).toFixed(1)}M`,  sub: "views across all videos", highlight: true },
+                  { label: "Total Likes",    value: `${(totalLikes / 1000).toFixed(1)}K`, sub: "across all videos" },
+                  { label: "Total Shares",   value: `${(totalShares / 1000).toFixed(1)}K`,sub: "organic spread" },
+                  { label: "Avg Like Rate",  value: `${avgLikeRate}%`,                    sub: "per video average" },
+                  { label: "Avg Share:Like", value: `${avgShareLike}%`,                   sub: "viral index average" },
+                ].map((s) => (
+                  <div key={s.label} className={`p-3 rounded-lg border ${s.highlight ? "border-primary/40 bg-primary/[0.06]" : "border-border/50 bg-black/20"}`}>
+                    <div className={`font-mono font-bold text-xl ${s.highlight ? "text-primary" : "text-white"}`}>{s.value}</div>
+                    <div className="text-[10px] font-mono text-muted-foreground uppercase tracking-wider mt-0.5">{s.label}</div>
+                    <div className="text-[10px] text-muted-foreground/50 mt-0.5">{s.sub}</div>
+                  </div>
+                ))}
+              </div>
+            </motion.div>
+          </section>
+
           {/* ── Video Selector ── */}
           <section>
             <p className="text-xs font-mono text-muted-foreground uppercase tracking-widest mb-4">
@@ -576,6 +637,138 @@ export default function Home() {
               </div>
             </motion.div>
           </AnimatePresence>
+
+          {/* ── Actual Views Trend ── */}
+          <section>
+            <SectionHeading prefix="Growth" title="Views_Per_Video" />
+            <div className="grid grid-cols-1 lg:grid-cols-3 gap-5">
+
+              {/* Trend bar chart */}
+              <motion.div
+                initial={{ opacity: 0, y: 16 }}
+                whileInView={{ opacity: 1, y: 0 }}
+                viewport={{ once: true }}
+                className="lg:col-span-2 p-5 pt-6 rounded-xl border border-border bg-card relative overflow-hidden shadow-[0_0_40px_-15px_rgba(0,255,65,0.08)]"
+              >
+                <p className="text-[10px] font-mono text-muted-foreground uppercase tracking-widest mb-4">
+                  Actual view count per video — V1 → V6
+                </p>
+                <ResponsiveContainer width="100%" height={240}>
+                  <BarChart data={VIEWS_TREND} margin={{ top: 4, right: 16, left: -8, bottom: 4 }} barCategoryGap="30%">
+                    <CartesianGrid stroke="rgba(255,255,255,0.04)" strokeDasharray="3 3" vertical={false} />
+                    <XAxis dataKey="name" tick={{ fill: "#666", fontFamily: "monospace", fontSize: 12 }} axisLine={false} tickLine={false} />
+                    <YAxis tickFormatter={(v) => `${(v / 1e6).toFixed(1)}M`} tick={{ fill: "#555", fontFamily: "monospace", fontSize: 10 }} axisLine={false} tickLine={false} />
+                    <Tooltip
+                      cursor={{ fill: "rgba(255,255,255,0.03)" }}
+                      content={({ active, payload }) => {
+                        if (!active || !payload?.length) return null;
+                        const d = payload[0].payload as (typeof VIEWS_TREND)[0];
+                        return (
+                          <div className="bg-black/95 border border-white/10 rounded-lg p-3 font-mono text-xs shadow-xl">
+                            <p className="text-white/50 text-[10px] uppercase tracking-wider mb-1">{d.name}</p>
+                            <p className="text-white/70 text-[10px] mb-2 line-clamp-1">{d.title}</p>
+                            <p className="text-primary font-bold text-sm">{d.viewsM}M views</p>
+                          </div>
+                        );
+                      }}
+                    />
+                    <Bar dataKey="views" fill="#00ff41" radius={[4, 4, 0, 0]} opacity={0.85} />
+                  </BarChart>
+                </ResponsiveContainer>
+              </motion.div>
+
+              {/* Diagnosis panel */}
+              <motion.div
+                initial={{ opacity: 0, x: 12 }}
+                whileInView={{ opacity: 1, x: 0 }}
+                viewport={{ once: true }}
+                transition={{ delay: 0.1 }}
+                className="p-5 rounded-xl border border-border bg-card space-y-4"
+              >
+                <h3 className="text-[11px] font-mono text-primary uppercase tracking-widest border-b border-border pb-3">
+                  Growth_Diagnosis
+                </h3>
+
+                <div className="space-y-3">
+                  <div className="flex gap-2.5">
+                    <TrendingDown className="w-4 h-4 text-yellow-400 shrink-0 mt-0.5" />
+                    <div>
+                      <p className="text-xs font-mono text-white font-medium">Views are declining</p>
+                      <p className="text-[11px] text-muted-foreground mt-0.5 leading-relaxed">3.3M → 1.1M per video. First video gets max algorithm boost.</p>
+                    </div>
+                  </div>
+
+                  <div className="flex gap-2.5">
+                    <TrendingUp className="w-4 h-4 text-primary shrink-0 mt-0.5" />
+                    <div>
+                      <p className="text-xs font-mono text-white font-medium">Like rate is rising</p>
+                      <p className="text-[11px] text-muted-foreground mt-0.5 leading-relaxed">1.34% → 1.80% — audience quality is getting better with each video.</p>
+                    </div>
+                  </div>
+
+                  <div className="flex gap-2.5">
+                    <Award className="w-4 h-4 text-primary shrink-0 mt-0.5" />
+                    <div>
+                      <p className="text-xs font-mono text-white font-medium">Viral spread is stable</p>
+                      <p className="text-[11px] text-muted-foreground mt-0.5 leading-relaxed">Every video has Share:Like &gt; 5% — formula is proven and consistent.</p>
+                    </div>
+                  </div>
+                </div>
+
+                <div className="mt-2 p-3 rounded-lg bg-primary/5 border border-primary/20">
+                  <p className="text-[11px] font-mono text-primary/90 leading-relaxed">
+                    <span className="font-bold">Bottom line:</span> Page growth mein views thoda kam hue hain lekin engaged audience build ho raha hai — yahi sahi direction hai.
+                  </p>
+                </div>
+              </motion.div>
+            </div>
+          </section>
+
+          {/* ── Growth Breakdown ── */}
+          <section>
+            <SectionHeading prefix="Analysis" title="What_Is_Working" />
+            <div className="grid grid-cols-1 md:grid-cols-3 gap-4">
+              {[
+                {
+                  icon: <Award className="w-5 h-5" />,
+                  title: "Best Performing Content",
+                  stat: "Step-by-Step Guides",
+                  detail: `V4 "Laptop Setup" — 11.37% Share:Like (highest). Jab aap kisi ko kuch sikhate ho step-by-step, woh share karta hai.`,
+                  color: "text-primary",
+                  border: "border-primary/30",
+                },
+                {
+                  icon: <TrendingUp className="w-5 h-5" />,
+                  title: "Fastest Growing Metric",
+                  stat: "Like Rate (+34%)",
+                  detail: `V1 se V6 tak like rate 1.34% se 1.80% ho gaya. Matlab audience zyada engaged ho rahi hai.`,
+                  color: "text-yellow-400",
+                  border: "border-yellow-500/20",
+                },
+                {
+                  icon: <ArrowRight className="w-5 h-5" />,
+                  title: "Next Video Strategy",
+                  stat: "How-to + Role/Identity",
+                  detail: `V6 "Pro Hacker" ne sabse zyada like rate diya. Agle video mein "How to Become a ___" formula try karo.`,
+                  color: "text-blue-400",
+                  border: "border-blue-500/20",
+                },
+              ].map((card) => (
+                <motion.div
+                  key={card.title}
+                  initial={{ opacity: 0, y: 12 }}
+                  whileInView={{ opacity: 1, y: 0 }}
+                  viewport={{ once: true }}
+                  className={`p-5 rounded-xl border ${card.border} bg-card/60 hover:bg-card transition-all`}
+                >
+                  <div className={`${card.color} mb-3`}>{card.icon}</div>
+                  <p className="text-[10px] font-mono text-muted-foreground uppercase tracking-widest mb-1">{card.title}</p>
+                  <p className={`font-mono font-bold text-base ${card.color} mb-2`}>{card.stat}</p>
+                  <p className="text-xs text-muted-foreground leading-relaxed">{card.detail}</p>
+                </motion.div>
+              ))}
+            </div>
+          </section>
 
           {/* ── Visual Chart Comparison ── */}
           <section>
