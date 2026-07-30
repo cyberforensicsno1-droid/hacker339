@@ -10,7 +10,8 @@
 
 | Dashboard # | Chrono Order | Title | Views | Likes | Shares | Comments | Duration | Link |
 |---|---|-------|-------|-------|--------|----------|----------|------|
-| V1 ⭐ NEWEST | 11th posted | Kali Linux Tools Explanation in 5 minutes | 628K | 14,071 | 2,575 | 123 | ~5 min | [Link](https://www.facebook.com/share/v/17pw81misG/) |
+| V1 ⭐ NEWEST | 12th posted | Install Kali Linux in vmware (Windows) | 3.4K | 75 | 7 | 4 | — | [Link](https://www.facebook.com/share/v/1BxPARUEB9/) |
+| V2 | 11th posted | Kali Linux Tools Explanation in 5 minutes | 628K | 14,071 | 2,575 | 123 | ~5 min | [Link](https://www.facebook.com/share/v/17pw81misG/) |
 | V2 | 10th posted | Power of Flipper Zero | 340K | 3,311 | 275 | 142 | — | [Link](https://www.facebook.com/share/v/19HkfGfohs/) |
 | V2 | 9th posted | Social media OSINT in 8 minutes | 995K | 18,850 | 3,869 | 139 | ~8 min | — |
 | V2 | 8th posted | Change IP address every 3 second | 1.3M | 24,759 | 4,187 | 453 | — | [Link](https://www.facebook.com/share/v/1GTUG7McHk/) |
