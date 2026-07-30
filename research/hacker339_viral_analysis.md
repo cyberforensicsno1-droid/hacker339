@@ -10,7 +10,10 @@
 |---|-------|-------|-------|--------|----------|----------|------|
 | 1 | 5 Chrome Extensions For Hackers! | 3.3M | 44.1K | 2.7K | 401 | 11.77s | [Link](https://www.facebook.com/share/r/1ByqdhCdHJ/) |
 | 2 | 7 Free Resources To Learn Hacking From Scratch | 1.9M | 28.6K | 1.5K | 273 | 10.57s | [Link](https://www.facebook.com/share/r/1K9mPUr8VM/) |
-| 3 | *(agle video ka wait)* | — | — | — | — | — | — |
+| 3 | How To Turn Your Phone Into a Hacking Machine! | 1.5M | 22.3K | 1.9K | 137 | 11.67s | [Link](https://www.facebook.com/share/r/197d92Qr3Z/) |
+| 4 | How to Setup a Laptop For Hacking Step By Step Guide! | 1.3M | 17.9K | 2.0K | 95 | 12.27s | [Link](https://www.facebook.com/share/r/1Bd6JsyEmh/) |
+| 5 | Transform Android into Hacking Machine! | 1.2M | 20.6K | 1.6K | 191 | 11.37s | [Link](https://www.facebook.com/share/r/1KC2X8DhmH/) |
+| 6 | How to Become a Pro Hacker | 1.1M | 19.8K | 1.5K | 147 | 10.64s | [Link](https://www.facebook.com/share/r/1D4CySr4hg/) |
 
 ---
 
@@ -58,54 +61,144 @@
 
 ---
 
+## 📊 VIDEO #3 — "How To Turn Your Phone Into a Hacking Machine!"
+
+### 📈 Stats
+| Metric | Value | Analysis |
+|--------|-------|----------|
+| 👁️ Views | 1,500,000 | 1.5M |
+| 👍 Likes | 22,295 | Like Rate = **1.49%** |
+| 💬 Comments | 137 | Comment Rate = 0.009% |
+| 🔁 Shares | 1,939 | Share Rate = 0.13% |
+| 💫 Share:Like Ratio | **8.7%** | Highest share spread — device transformation hook works |
+
+### 🎬 Technical Details
+| Property | Value |
+|----------|-------|
+| Duration | **11.67 seconds** |
+| Format | Vertical 720×1280 (9:16) |
+| Frame Rate | 30 FPS |
+| Music | Jumbo · Game Over (feat. Poccex) |
+| Caption Hashtag | #infosec |
+
+---
+
+## 📊 VIDEO #4 — "How to Setup a Laptop For Hacking Step By Step Guide!"
+
+### 📈 Stats
+| Metric | Value | Analysis |
+|--------|-------|----------|
+| 👁️ Views | 1,300,000 | 1.3M |
+| 👍 Likes | 17,860 | Like Rate = **1.37%** |
+| 💬 Comments | 95 | Comment Rate = 0.007% |
+| 🔁 Shares | 2,031 | Share Rate = 0.156% |
+| 💫 Share:Like Ratio | **11.37% ↑** | HIGHEST — Step-by-step guide format drives max shares |
+
+### 🎬 Technical Details
+| Property | Value |
+|----------|-------|
+| Duration | **12.27 seconds** |
+| Format | Vertical 720×1280 (9:16) |
+| Frame Rate | 30 FPS |
+| Music | Tony Dark Eyes · Dark (Slowed) |
+| Caption Hashtag | #infosec |
+
+---
+
+## 📊 VIDEO #5 — "Transform Android into Hacking Machine!"
+
+### 📈 Stats
+| Metric | Value | Analysis |
+|--------|-------|----------|
+| 👁️ Views | 1,200,000 | 1.2M |
+| 👍 Likes | 20,630 | Like Rate = **1.72%** |
+| 💬 Comments | 191 | Comment Rate = 0.016% |
+| 🔁 Shares | 1,596 | Share Rate = 0.133% |
+| 💫 Share:Like Ratio | **7.74%** | High — Android audience very engaged |
+
+### 🎬 Technical Details
+| Property | Value |
+|----------|-------|
+| Duration | **11.37 seconds** |
+| Format | Vertical 720×1280 (9:16) |
+| Frame Rate | 30 FPS |
+| Music | Tony Dark Eyes · Walk (Instrumental) |
+| Caption Hashtag | #infosec |
+
+---
+
+## 📊 VIDEO #6 — "How to Become a Pro Hacker"
+
+### 📈 Stats
+| Metric | Value | Analysis |
+|--------|-------|----------|
+| 👁️ Views | 1,100,000 | 1.1M |
+| 👍 Likes | 19,759 | Like Rate = **1.80% ↑** — HIGHEST like rate across all videos! |
+| 💬 Comments | 147 | Comment Rate = 0.013% |
+| 🔁 Shares | 1,497 | Share Rate = 0.136% |
+| 💫 Share:Like Ratio | **7.58%** | High — aspirational "become a hacker" angle resonates |
+
+### 🎬 Technical Details
+| Property | Value |
+|----------|-------|
+| Duration | **10.64 seconds** |
+| Format | Vertical 720×1280 (9:16) |
+| Frame Rate | 30 FPS |
+| Music | Tony Dark Eyes · Dark (Slowed) |
+| Caption Hashtag | #CyberSecurity |
+
+### 🔍 Notable Observations
+- **Hashtag shift**: First video to use `#CyberSecurity` instead of `#infosec` — broader audience targeting
+- **Highest like rate** (1.80%) despite fewest views — aspirational "role" titles drive stronger emotional connection than tool/resource lists
+- **"How to Become"** framing (identity/aspiration) vs. previous "How to Setup/Transform" (task-based) — new angle worth testing more
+
+---
+
 ## 🧠 CROSS-VIDEO PATTERN ANALYSIS
 
-### ✅ Consistent Patterns (Dono Videos Mein)
-| Pattern | Video 1 | Video 2 | Conclusion |
-|---------|---------|---------|------------|
-| Duration | 11.77s | 10.57s | **Always under 12 seconds** |
-| Format | 9:16 Vertical | 9:16 Vertical | **Always Reels format** |
-| Music | Slowed/Dark | Slowed/Dark | **Same aesthetic music genre** |
-| Hashtag | #infosec | #infosec | **Same niche hashtag** |
-| Visual Style | Black + Green | Black + Green | **100% consistent brand** |
-| Title Format | Number + Resource + Audience | Number + Resource + Audience | **Same proven formula** |
-| Share:Like | 6.1% | 5.24% | **Both well above 5%** |
+### ✅ Consistent Patterns (Sab Videos Mein)
+| Pattern | V1 | V2 | V3 | V4 | V5 | V6 | Conclusion |
+|---------|----|----|----|----|----|----|------------|
+| Duration | 11.77s | 10.57s | 11.67s | 12.27s | 11.37s | 10.64s | **Always under 12.5 seconds** |
+| Format | 9:16 | 9:16 | 9:16 | 9:16 | 9:16 | 9:16 | **Always Reels format** |
+| Music | Dark Slowed | Dark Slowed | Game Over | Dark Slowed | Walk Instr. | Dark Slowed | **Same aesthetic genre** |
+| Visual Style | Black+Green | Black+Green | Black+Purple | Black+Red | Black+Green | Black+Green | **Consistent dark brand** |
+| Share:Like | 6.1% | 5.24% | 8.7% | 11.37% ↑ | 7.74% | 7.58% | **All above 5% — viral** |
 
 ### 📐 CONFIRMED VIRAL FORMULA
 ```
 Short Duration (< 12s)
 + Black/Green Hacker Aesthetic
-+ Number-based Title ("5 X", "7 X")
-+ Resource/Tool Content (actionable)
++ Aspirational or Resource Title
 + Hacker/Cybersecurity Niche
 + Slowed Dark Music
-+ #infosec Hashtag
++ Cyber niche hashtag (#infosec or #CyberSecurity)
 = VIRAL REEL
 ```
 
 ---
 
-## 💡 KEY INSIGHTS
+## 💡 KEY INSIGHTS (Updated — 6 Videos)
 
 | # | Insight | Importance |
 |---|---------|------------|
-| 1 | **Both videos under 12 seconds** — near 100% watch time guaranteed | 🔴 HIGH |
-| 2 | **Number-based titles always** — "5 X" and "7 X" work every time | 🔴 HIGH |
-| 3 | **Share:Like ratio > 5%** both times — confirms shareable content formula | 🔴 HIGH |
-| 4 | **#infosec every post** — builds targeted community reach | 🟡 MEDIUM |
-| 5 | **Like Rate actually HIGHER on V2** (1.51% vs 1.34%) — more engaged audience | 🟡 MEDIUM |
-| 6 | **Slowed dark music** consistent — part of the brand identity | 🟡 MEDIUM |
-| 7 | **"Free Resources" framing** — "free" is a powerful word, people love it | 🔴 HIGH |
+| 1 | **All videos under 12.5 seconds** — near 100% watch time guaranteed | 🔴 HIGH |
+| 2 | **Like Rate HIGHEST on V6** (1.80%) — aspirational "become a hacker" angle hits harder than tool lists | 🔴 HIGH |
+| 3 | **Share:Like ratio > 5% on all 6 videos** — formula is fully confirmed | 🔴 HIGH |
+| 4 | **V4 Step-by-step guide** has highest share rate (11.37%) — instructional "setup" content spreads most | 🔴 HIGH |
+| 5 | **Hashtag experiment**: V6 used #CyberSecurity instead of #infosec — worth tracking reach difference | 🟡 MEDIUM |
+| 6 | **Slowed dark music** on 4/6 videos — core brand signal, don't change it | 🟡 MEDIUM |
+| 7 | **"Free Resources" framing** still powerful — V2 highest like rate among tool-list videos | 🟡 MEDIUM |
 
 ---
 
 ## 📋 NOTES & OBSERVATIONS
-- [x] 2 videos analyzed
-- [ ] Aur videos analyze karne hain
+- [x] 6 videos analyzed
 - [ ] Posting frequency pata karni hai
-- [ ] Kitne din baad dono videos upload hue — frequency pattern
-- [ ] Kya aur bhi "free resources" type content hai?
+- [ ] Kya aur bhi "aspirational role" type content hai? (V6 angle test karna hai)
+- [ ] #CyberSecurity vs #infosec — reach difference track karo
+- [ ] V6 ka like rate sabse zyada hai — aspirational title format aur test karo
 
 ---
 
-*Report Version: 2.0 | Last Updated: July 30, 2026 | Videos Analyzed: 2*
+*Report Version: 3.0 | Last Updated: July 30, 2026 | Videos Analyzed: 6*
